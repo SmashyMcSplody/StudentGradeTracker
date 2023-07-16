@@ -2,11 +2,17 @@ package sgt.studentgradetracker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
     @FXML
@@ -53,19 +59,49 @@ public class LoginController {
     }
 
     private void loadStudentInterface() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Login Successful");
-        alert.setHeaderText(null);
-        alert.setContentText("Welcome, student!");
-        alert.showAndWait();
+        try {
+            // Load the student interface FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentInterface.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the student interface
+            Stage studentStage = new Stage();
+            studentStage.setTitle("Student Grade Tracker");
+            studentStage.setScene(new Scene(root));
+
+            // Close the login scene
+            Stage loginStage = (Stage) usernameField.getScene().getWindow();
+            loginStage.close();
+
+            // Show the student interface
+            studentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+
+
     private void loadTeacherInterface() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Login Successful");
-        alert.setHeaderText(null);
-        alert.setContentText("Welcome, Teacher!");
-        alert.showAndWait();
+        try {
+            // Load the student interface FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the student interface
+            Stage teacherStage = new Stage();
+            teacherStage.setTitle("Student Grade Tracker");
+            teacherStage.setScene(new Scene(root));
+
+            // Close the login scene
+            Stage loginStage = (Stage) usernameField.getScene().getWindow();
+            loginStage.close();
+
+            // Show the student interface
+            teacherStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showError(String message) {

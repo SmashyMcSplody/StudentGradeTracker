@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgt.studentgradetracker.StudentInterfaceControler">
+    <left>
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="38.0" layoutY="351.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIEW RECORDS" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="55.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/view.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="43.0" layoutY="247.0" mnemonicParsing="false" onAction="#AnalyticButtonClicked" style="-fx-background-color: transparent;" text="  ANALYTICS" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="58.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/Analytics.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+        </AnchorPane>
+    </left>
+    <center>
+        <Button mnemonicParsing="false" style="-fx-border-width: 0px 0px 0px 0px; -fx-background-color: TRANSPARENT;" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
