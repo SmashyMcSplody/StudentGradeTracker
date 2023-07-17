@@ -45,7 +45,7 @@ public class LoginController {
     private User validateCredentials(String username, String password) {
         // Retrieve user from database or check credentials from memory
         // Return the user object if valid, otherwise return null
-        // Example implementation:
+
         User student = new User("student123", "password", "student");
         User teacher = new User("teacher456", "password", "teacher");
 
