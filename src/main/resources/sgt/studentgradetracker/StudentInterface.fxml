@@ -26,7 +26,7 @@
                         <Font name="Century Gothic Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="125.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
+                  <Text fill="WHITE" layoutX="122.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
                      <font>
                         <Font name="Century Gothic Bold" size="12.0" />
                      </font>
