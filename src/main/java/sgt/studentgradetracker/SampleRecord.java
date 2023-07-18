@@ -1,26 +1,29 @@
 package sgt.studentgradetracker;
 
-import javafx.beans.value.ObservableValue;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class SampleRecord {
-    private final StringProperty fname;
-    private final StringProperty id;
+    private StringProperty fname;
+    private StringProperty mname;
+    private StringProperty lname;
+    private StringProperty id;
+    private StringProperty course;
+    private ObservableList<String> subjects;
 
-    public SampleRecord(String fname, String id){
+    public SampleRecord(String fname, String mname, String lname, String id, String course, ObservableList<String> subjects) {
         this.fname = new SimpleStringProperty(fname);
+        this.mname = new SimpleStringProperty(mname);
+        this.lname = new SimpleStringProperty(lname);
         this.id = new SimpleStringProperty(id);
+        this.course = new SimpleStringProperty(course);
+        this.subjects = FXCollections.observableArrayList();
+
     }
 
-    public StringProperty fnameProperty() {
-        return fname;
-    }
-
-    public StringProperty idProperty() {
-        return id;
-    }
-
+    // Getter and Setter methods for fname property
     public String getFname() {
         return fname.get();
     }
@@ -29,11 +32,59 @@ public class SampleRecord {
         this.fname.set(fname);
     }
 
+    public StringProperty fnameProperty() {
+        return fname;
+    }
+
+    // Getter and Setter methods for mname property
+    public String getMname() {
+        return mname.get();
+    }
+
+    public void setMname(String mname) {
+        this.mname.set(mname);
+    }
+
+    public StringProperty mnameProperty() {
+        return mname;
+    }
+
+    // Getter and Setter methods for lname property
+    public String getLname() {
+        return lname.get();
+    }
+
+    public void setLname(String lname) {
+        this.lname.set(lname);
+    }
+
+    public StringProperty lnameProperty() {
+        return lname;
+    }
+
+    // Getter and Setter methods for id property
     public String getId() {
         return id.get();
     }
 
     public void setId(String id) {
         this.id.set(id);
+    }
+
+    public StringProperty idProperty() {
+        return id;
+    }
+
+    // Getter and Setter methods for course property
+    public String getCourse() {
+        return course.get();
+    }
+
+    public void setCourse(String course) {
+        this.course.set(course);
+    }
+
+    public StringProperty courseProperty() {
+        return course;
     }
 }

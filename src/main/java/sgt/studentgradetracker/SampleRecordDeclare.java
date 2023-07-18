@@ -7,8 +7,8 @@ public class SampleRecordDeclare {
 
     public SampleRecordDeclare() {
         studentList = new ArrayList<>();
-        studentList.add(new SampleRecord("Elisha John", "2022-0956"));
-        studentList.add(new SampleRecord("Nassem", "2022-0690"));
+        studentList.add(new SampleRecord("Elisha John", "Dingal", "Aton", "2022-0956", "BS-CpE"));
+        studentList.add(new SampleRecord("Nassem", "Layatan", "Aton", "2022-0690", "BS-CpE"));
     }
 
     public ArrayList<SampleRecord> getStudentList() {
