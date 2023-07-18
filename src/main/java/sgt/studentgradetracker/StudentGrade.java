@@ -1,5 +1,3 @@
-package sgt.studentgradetracker;
-
 public class StudentGrade {
     protected String subject;
     protected float QuizGrade;
@@ -21,11 +19,11 @@ public class StudentGrade {
             QuizGrade = (qGrade/qTotal) * 100;
              ExamGrade = eGrade/eTotal * 100;
                WrittenGrade = wGrade/wTotal *100;
-                FinalGrade = ((qGrade * (qWeightage/100)) + (eGrade * (eWeightage/100)) + (wGrade * (wWeightage/100)))/3;
+                FinalGrade = (qGrade * (qWeightage/100)) + (eGrade * (eWeightage/100)) + (wGrade * (wWeightage/100));
             }
             
             public String gradeOutput(){
-              return "Student's grades in Subject: "+subject +" \n Quiz Grade: " +QuizGrade +" Exam Grade: " +ExamGrade +" Written Grade: " +WrittenGrade +" Over-all Final Grade:  " +FinalGrade ;
+              return "\n Student's grades in Subject: "+subject +" \n Quiz Grade: " +QuizGrade +" Exam Grade: " +ExamGrade +" Written Grade: " +WrittenGrade +" Over-all Final Grade:  " +FinalGrade ;
             }
             public String gradeRecord(){
               return "Quiz Grade: " +QuizGrade +" Exam Grade: " +ExamGrade +" Written Grade: " +WrittenGrade +" Over-all Final Grade:  " +FinalGrade ;

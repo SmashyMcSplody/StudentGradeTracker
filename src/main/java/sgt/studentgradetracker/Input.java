@@ -1,5 +1,3 @@
-package sgt.studentgradetracker;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +5,7 @@ public class Input extends Teacher{
 //declarations
          ArrayList<StudentRecord> StudentRecord = new ArrayList<StudentRecord>();
          Scanner input = new Scanner(System.in);
+         
                
          public void toInput(){
             //Student Name input
@@ -30,5 +29,38 @@ public class Input extends Teacher{
                               StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
                                StudentRecord.add(student);
          }
-}    
+
+         public int duplicateChecker(){
+            int duplicateCheck = 0;
+                    for(int k = 1; k < StudentRecord.size(); k++){
+                        if(StudentRecord.get(k-1).getFirstname().equals(StudentRecord.get(k).getFirstname()) && StudentRecord.get(k-1).getLastname().equals(StudentRecord.get(k).getLastname())){
+                            duplicateCheck = 1;
+                        }
+                        else{
+                            duplicateCheck = 0;
+                        }
+                       
+                    }
+                    return duplicateCheck;
+                }
+
+         public void reInput(){
+           System.out.println(" ERROR! Duplicate record found! Please input new record!");
+            toInput();
+            
+              
+         }
+
+
+       public void recordPrinter(){
+            for( int i = 0 ; i < StudentRecord.size(); i++){
+                  System.out.println(StudentRecord.get(i).dataRecord());
+                    for(int j = 0; j < StudentRecord.get(i).subjectGrades.size(); j++){
+                      System.out.println(StudentRecord.get(i).subjectGrades.get(j).gradeOutput());
+                    }
+                }
+       }
+      }
+
+
 

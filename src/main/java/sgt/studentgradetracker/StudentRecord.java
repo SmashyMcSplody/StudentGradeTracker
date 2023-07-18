@@ -1,5 +1,3 @@
-package sgt.studentgradetracker;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 public class StudentRecord{
@@ -71,7 +69,7 @@ public class StudentRecord{
              
 
              public String toString(){
-                return "Successfully created a record for student " +idnum +" " +fullname +" under the course" +course ;
+                return "Succesfully created a record for student " +idnum +" " +fullname +" under the course " +course ;
              }
              public String dataRecord(){
                 return "Student: " +fullname +":  " +idnum +" Course  " +course;
