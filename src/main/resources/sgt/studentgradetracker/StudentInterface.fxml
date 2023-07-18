@@ -90,10 +90,10 @@
                 <RowConstraints maxHeight="420.3333435058594" minHeight="10.0" prefHeight="387.66668701171875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@css/TableView.css" GridPane.rowIndex="1">
+                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/TableView.css" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn fx:id="subjectColumn" prefWidth="532.3333129882812" text="Subject" />
-                      <TableColumn fx:id="gradeColumn" prefWidth="135.66659545898438" text="Grade" />
+                      <TableColumn fx:id="fnameColumn" prefWidth="532.3333129882812" text="First Name" />
+                      <TableColumn fx:id="idColumn" prefWidth="135.66659545898438" text="ID" />
                     </columns>
                   </TableView>
                </children>

@@ -29,18 +29,21 @@ public class StudentInterfaceControler {
     @FXML
     private TableColumn<SampleRecord, String> idColumn;
 
-    private ObservableList<SampleRecord> SampleRecord;
+    private ObservableList<SampleRecord> sampleRecords;
 
+    @FXML
     public void initialize() {
+        // Create the list to store the student objects
+        sampleRecords = FXCollections.observableArrayList();
+
         // Sample data (you can add more students here)
         SampleRecordDeclare declare = new SampleRecordDeclare();
-        SampleRecord = FXCollections.observableArrayList();
-        SampleRecord.addAll(declare.getStudentList());
+        sampleRecords.addAll(declare.getStudentList());
 
         // Set the data to be displayed in the TableView
-        tableView.setItems(SampleRecord);
+        tableView.setItems(sampleRecords);
 
-        // Define how the columns will get their data from the Student objects
+        // Define how the columns will get their data from the SampleRecord objects
         fnameColumn.setCellValueFactory(cellData -> cellData.getValue().fnameProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
     }
