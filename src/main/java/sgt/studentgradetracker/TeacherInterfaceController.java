@@ -15,7 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StudentInterfaceControler {
+public class TeacherInterfaceController {
+
     public Button logoutButton;
     public TableColumn subjectColumn;
     public TableColumn gradeColumn;
@@ -25,9 +26,14 @@ public class StudentInterfaceControler {
 
     @FXML
     private TableColumn<SampleRecord, String> fnameColumn;
-
+    @FXML
+    private TableColumn<SampleRecord, String> mnameColumn;
+    @FXML
+    private TableColumn<SampleRecord, String> lnameColumn;
     @FXML
     private TableColumn<SampleRecord, String> idColumn;
+    @FXML
+    private TableColumn<SampleRecord, String> courseColumn;
 
     private ObservableList<SampleRecord> sampleRecords;
 
@@ -45,7 +51,10 @@ public class StudentInterfaceControler {
 
         // Define how the columns will get their data from the SampleRecord objects
         fnameColumn.setCellValueFactory(cellData -> cellData.getValue().fnameProperty());
+        mnameColumn.setCellValueFactory(cellData -> cellData.getValue().mnameProperty());
+        lnameColumn.setCellValueFactory(cellData -> cellData.getValue().lnameProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+        courseColumn.setCellValueFactory(cellData -> cellData.getValue().courseProperty());
     }
 
     @FXML
@@ -56,7 +65,7 @@ public class StudentInterfaceControler {
         alert.setContentText("Button Clicked");
         alert.showAndWait();
     }
-    
+
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
         // Perform any logout logic if necessary
@@ -70,4 +79,5 @@ public class StudentInterfaceControler {
         stage.setScene(loginScene);
         stage.show();
     }
+
 }

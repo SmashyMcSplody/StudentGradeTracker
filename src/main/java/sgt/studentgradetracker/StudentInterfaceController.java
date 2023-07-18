@@ -12,49 +12,59 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class TeacherInterfaceControler {
-
+public class StudentInterfaceController {
     public Button logoutButton;
-    public TableColumn subjectColumn;
-    public TableColumn gradeColumn;
 
     @FXML
-    private TableView<SampleRecord> tableView;
+    private TableView<SampleSubjects> tableView;
 
     @FXML
-    private TableColumn<SampleRecord, String> fnameColumn;
-    @FXML
-    private TableColumn<SampleRecord, String> mnameColumn;
-    @FXML
-    private TableColumn<SampleRecord, String> lnameColumn;
-    @FXML
-    private TableColumn<SampleRecord, String> idColumn;
-    @FXML
-    private TableColumn<SampleRecord, String> courseColumn;
+    private TableColumn<SampleSubjects, String> subjectColumn;
 
-    private ObservableList<SampleRecord> sampleRecords;
+    @FXML
+    private TableColumn<SampleSubjects, String> gradeColumn;
+
+    private ObservableList<SampleSubjects> sampleSubjects;
+
+    @FXML
+    private Label usernameLabel;
+
+    // Store the User object
+    private User user;
+
+    // Method to set the User object
+    public void setUser(User user) {
+        this.user = user;
+        // Update the UI with the user information
+        usernameLabel.setText("Welcome, " + user.getUsername() + "!");
+    }
+
 
     @FXML
     public void initialize() {
         // Create the list to store the student objects
-        sampleRecords = FXCollections.observableArrayList();
+        sampleSubjects = FXCollections.observableArrayList();
 
         // Sample data (you can add more students here)
         SampleRecordDeclare declare = new SampleRecordDeclare();
-        sampleRecords.addAll(declare.getStudentList());
+        ArrayList<SampleRecord> studentList = declare.getStudentList();
+
+        // Add the subjects from each student to the sampleSubjects list
+        for (SampleRecord student : studentList) {
+            sampleSubjects.addAll(student.getSubjects());
+        }
 
         // Set the data to be displayed in the TableView
-        tableView.setItems(sampleRecords);
+        tableView.setItems(sampleSubjects);
 
         // Define how the columns will get their data from the SampleRecord objects
-        fnameColumn.setCellValueFactory(cellData -> cellData.getValue().fnameProperty());
-        mnameColumn.setCellValueFactory(cellData -> cellData.getValue().mnameProperty());
-        lnameColumn.setCellValueFactory(cellData -> cellData.getValue().lnameProperty());
-        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-        courseColumn.setCellValueFactory(cellData -> cellData.getValue().courseProperty());
+        subjectColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        gradeColumn.setCellValueFactory(cellData -> cellData.getValue().gradeProperty());
     }
 
     @FXML
@@ -65,10 +75,9 @@ public class TeacherInterfaceControler {
         alert.setContentText("Button Clicked");
         alert.showAndWait();
     }
-
+    
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
-        // Perform any logout logic if necessary
 
         // Load the login scene and set it as the new scene in the primary stage
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
@@ -79,5 +88,4 @@ public class TeacherInterfaceControler {
         stage.setScene(loginScene);
         stage.show();
     }
-
 }
