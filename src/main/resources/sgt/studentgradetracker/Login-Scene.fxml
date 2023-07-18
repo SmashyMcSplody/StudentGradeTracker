@@ -16,7 +16,7 @@
          <children>
             <TextField fx:id="usernameField" layoutX="114.0" layoutY="209.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0c1d35; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="passwordField" layoutX="116.0" layoutY="264.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0c1d35; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="155.0" layoutY="341.0" mnemonicParsing="false" onAction="#loginButtonClicked" style="-fx-background-color: #0c1d35;" text="Login" textFill="WHITE">
+            <Button defaultButton="true" layoutX="155.0" layoutY="341.0" mnemonicParsing="false" onAction="#loginButtonClicked" style="-fx-background-color: #0c1d35;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="10.0" />
                </font>

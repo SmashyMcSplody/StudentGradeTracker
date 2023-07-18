@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,7 +43,6 @@ public class LoginController {
     private User validateCredentials(String username, String password) {
         // Retrieve user from database or check credentials from memory
         // Return the user object if valid, otherwise return null
-
         User student = new User("student123", "password", "student");
         User teacher = new User("teacher456", "password", "teacher");
 
