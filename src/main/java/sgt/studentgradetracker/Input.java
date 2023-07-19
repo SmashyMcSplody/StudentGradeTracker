@@ -1,5 +1,3 @@
-package sgt.studentgradetracker;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,19 +5,23 @@ public class Input extends Teacher{
 //declarations
          ArrayList<StudentRecord> StudentRecord = new ArrayList<StudentRecord>();
          Scanner input = new Scanner(System.in);
+         String fname;
+         String lname;
+         String mname;
+         String fullname;
          
                
          public void toInput(){
             //Student Name input
             System.out.print("Please input the student's firstname: ");
-            String fname = input.nextLine(); 
-             input.nextLine();
-              System.out.print("Please input the student's middlename: ");
-               String mname = input.nextLine();
-                System.out.print("Please input the student's lastname: ");
-                 String lname = input.nextLine();
-                  System.out.println("The students full name is: " +fname +" " +mname +" " +lname);
-                   String fullname = fname +" " +mname +" " +lname;
+             fname = input.nextLine(); 
+              input.nextLine();
+               System.out.print("Please input the student's middlename: ");
+                mname = input.nextLine();
+                 System.out.print("Please input the student's lastname: ");
+                  lname = input.nextLine();
+                   System.out.println("The students full name is: " +fname +" " +mname +" " +lname);
+                    fullname = fname +" " +mname +" " +lname;
 
             //Student Data input
                     System.out.print("Please input the student's idnumber: ");
@@ -34,8 +36,8 @@ public class Input extends Teacher{
 
          public int duplicateChecker(){
             int duplicateCheck = 0;
-                    for(int k = 1; k < StudentRecord.size(); k++){
-                        if(StudentRecord.get(k-1).getFirstname().equals(StudentRecord.get(k).getFirstname()) && StudentRecord.get(k-1).getLastname().equals(StudentRecord.get(k).getLastname())){
+                    for(int k = 0; k < StudentRecord.size(); k++){
+                        if(StudentRecord.get(k).getFirstname().equals(fname) && StudentRecord.get(k).getLastname().equals(lname)){
                             duplicateCheck = 1;
                         }
                         else{
@@ -48,7 +50,15 @@ public class Input extends Teacher{
 
          public void reInput(){
            System.out.println(" ERROR! Duplicate record found! Please input new record!");
-            toInput();
+           System.out.println("Would you like to create another record or view all existing records?");
+           String feedback = input.nextLine();
+           if(feedback.equals("create") || feedback.equals("Create") || feedback.equals("CREATE")){
+              toInput();
+           }
+           else{
+            recordPrinter();
+           }
+           
             
               
          }
