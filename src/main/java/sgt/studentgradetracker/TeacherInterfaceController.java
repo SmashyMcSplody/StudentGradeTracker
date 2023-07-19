@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +20,12 @@ public class TeacherInterfaceController {
 
     @FXML
     private TableView<SampleRecord> tableView;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label idLabel;
 
     @FXML
     private TableColumn<SampleRecord, String> fnameColumn;
@@ -44,7 +47,10 @@ public class TeacherInterfaceController {
     public void setUser(User user) {
         this.user = user;
         // Update the UI with the user information
-
+        SampleRecord sampleRecord = (SampleRecord) user;
+        String fullName = sampleRecord.getFname() + " " + sampleRecord.getLname();
+        nameLabel.setText(fullName);
+        idLabel.setText(sampleRecord.getId());
     }
 
     @FXML

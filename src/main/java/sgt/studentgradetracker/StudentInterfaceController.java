@@ -32,7 +32,10 @@ public class StudentInterfaceController {
     private ObservableList<SampleSubjects> sampleSubjects;
 
     @FXML
-    private Label usernameLabel;
+    private Label nameLabel;
+
+    @FXML
+    private Label idLabel;
 
     // Store the User object
     private User user;
@@ -40,10 +43,14 @@ public class StudentInterfaceController {
     // Method to set the User object
     public void setUser(User user) {
         this.user = user;
-        // Update the UI with the user information
-        usernameLabel.setText("Welcome, " + user.getUsername() + "!");
-    }
+        // Update the UI with the firstname
+            SampleRecord sampleRecord = (SampleRecord) user;
+            String fullName = sampleRecord.getFname() + " " + sampleRecord.getLname();
+            nameLabel.setText(fullName);
+            idLabel.setText(sampleRecord.getId());
 
+
+    }
 
     @FXML
     public void initialize() {

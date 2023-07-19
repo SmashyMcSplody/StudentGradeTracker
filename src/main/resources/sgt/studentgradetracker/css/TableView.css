@@ -6,13 +6,17 @@
    -fx-text-fill: white;
    -fx-font-weight: bold;
    -fx-alignment: CENTER_LEFT;
+   -fx-font-family: "Century Gothic Bold"
 }
+
+
 .table-view .cell{
    -fx-cell-size: 35;
   -fx-alignment: center-left;
   -fx-background-color: #FFFFFF;
   -fx-border-color: #FFFFFF;
   -fx-text-fill: black;
+  -fx-font-family: "Century Gothic Bold"
   -fx-alignment: CENTER_LEFT;
 
 }
