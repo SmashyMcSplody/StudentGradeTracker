@@ -84,8 +84,29 @@ public class LoginController {
     }
 
     private void loadTeacherInterface(User user) {
-        // Add similar code here to load the teacher interface
-        // You can create a new FXML file for the teacher interface and a separate controller class
+        try {
+            // Load the teacher interface FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+            Parent root = loader.load();
+
+            // Pass the user object to the teacher interface controller
+            TeacherInterfaceController teacherInterfaceController = loader.getController();
+            teacherInterfaceController.setUser(user);
+
+            // Create a new stage for the teacher interface
+            Stage teacherStage = new Stage();
+            teacherStage.setTitle("Student Grade Tracker");
+            teacherStage.setScene(new Scene(root));
+
+            // Close the login scene
+            Stage loginStage = (Stage) usernameField.getScene().getWindow();
+            loginStage.close();
+
+            // Show the teacher interface
+            teacherStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showError(String message) {

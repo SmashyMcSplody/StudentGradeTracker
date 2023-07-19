@@ -24,7 +24,7 @@ public class SampleRecord extends User {
         this.lname = new SimpleStringProperty(lname);
         this.id = new SimpleStringProperty(id);
         this.course = new SimpleStringProperty(course);
-        this.username = username; // Set the username field
+        this.username = username;
         this.password = password;
         this.role = role;
         this.subjects = FXCollections.observableArrayList();

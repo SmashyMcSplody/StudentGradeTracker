@@ -37,6 +37,16 @@ public class TeacherInterfaceController {
 
     private ObservableList<SampleRecord> sampleRecords;
 
+    // Store the User object
+    private User user;
+
+    // Method to set the User object
+    public void setUser(User user) {
+        this.user = user;
+        // Update the UI with the user information
+
+    }
+
     @FXML
     public void initialize() {
         // Create the list to store the student objects
