@@ -1,3 +1,5 @@
+package sgt.studentgradetracker;
+
 import java.util.Scanner;
 
 public class Teacher {

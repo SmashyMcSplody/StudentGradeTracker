@@ -84,7 +84,6 @@ public class TeacherInterfaceController {
 
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
-        // Perform any logout logic if necessary
 
         // Load the login scene and set it as the new scene in the primary stage
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
