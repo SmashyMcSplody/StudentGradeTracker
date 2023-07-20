@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="200.0" maxWidth="300.0" minHeight="200.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane minHeight="15.0" minWidth="300.0" prefHeight="15.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;">
+         <children>
+            <Label layoutX="30.0" layoutY="1.5" prefHeight="15.0" text="Student Grade Tracker" textFill="#efe7e7">
+               <font>
+                  <Font name="Century Gothic Bold" size="10.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="13.5" fitWidth="25.0" layoutX="5.0" layoutY="1.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@media/newLogoHoodie-03.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="60.0" prefHeight="22.5" prefWidth="265.0" style="-fx-background-color: #0c1d35;">
+         <children>
+            <Label layoutX="25.0" layoutY="1.25" prefHeight="20.0" prefWidth="225.0" text="ERROR! Student record already exists!" textFill="#e6dddd">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="22.5" fitWidth="30.0" layoutX="2.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@media/Untitled%20design.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="22.5" fitWidth="30.0" layoutX="242.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@media/Untitled%20design.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="okayAlertButton" layoutX="128.0" layoutY="154.0" mnemonicParsing="false" style="-fx-background-color: #0c1d35;" text="Okay" textFill="#f6f2f2">
+         <font>
+            <Font name="Century Gothic Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="115.0" layoutY="88.0" prefHeight="10.0" prefWidth="75.0" text="Please try again!" textFill="#0c1d35">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Pane layoutY="198.0" prefHeight="1.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;" />
+      <Pane layoutX="102.5" layoutY="102.0" prefHeight="1.0" prefWidth="100.0" style="-fx-background-color: #0c1d35;" />
+   </children>
+</AnchorPane>

@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgt.studentgradetracker.InputScene">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgt.studentgradetracker.Input">
    <children>
       <VBox prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;">
          <children>
@@ -111,17 +110,17 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="inputfnameTextfield" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Firstname" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="firstnameField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Firstname" style="-fx-background-color: #0c1d35;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="inputmnameTextField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Middlename" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="middlenameField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Middlename" style="-fx-background-color: #0c1d35;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="inputlnameTextField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Lastname" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="lastnameField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Lastname" style="-fx-background-color: #0c1d35;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -139,12 +138,12 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="inputidnumTextField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="idnumField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="inputcourseTextField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Course" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="courseField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Course" style="-fx-background-color: #0c1d35;">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -166,6 +165,11 @@
                         </Pane>
                      </children>
                   </HBox>
+                  <Button fx:id="inputButton" layoutX="302.0" layoutY="482.0" mnemonicParsing="false" onAction="#toInput" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #0c1d35;" text="Input" textFill="#f2eaea">
+                     <font>
+                        <Font name="Century Gothic Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
