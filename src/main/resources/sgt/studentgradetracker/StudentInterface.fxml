@@ -39,21 +39,6 @@
                   </Text>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#AnalyticButtonClicked" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Analytics" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="13.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@media/Analytics.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
-               </font>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </Button>
             <Pane prefHeight="213.0" prefWidth="300.0" />
             <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="21.0" prefWidth="78.0" style="-fx-background-color: Transparent;" text="Logout" textFill="WHITE">
                <font>

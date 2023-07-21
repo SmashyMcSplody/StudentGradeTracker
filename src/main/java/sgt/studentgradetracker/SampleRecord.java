@@ -32,7 +32,7 @@ public class SampleRecord extends User {
 
     //Getter and Setter Methods for user
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public String getUsername() {

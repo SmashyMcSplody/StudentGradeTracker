@@ -1,6 +1,8 @@
 package sgt.studentgradetracker;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,20 +17,21 @@ import javafx.event.ActionEvent;
 
 import javax.security.auth.Subject;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static javafx.collections.FXCollections.*;
+
 public class Input {
 //declarations
-         ArrayList<StudentRecord> StudentRecord = new ArrayList<StudentRecord>();
-        protected String fname;
-        protected String lname;
-        protected String mname;
-        protected String fullname;
-        protected String idnum;
-        protected String course;
-
-
+    ArrayList<StudentRecord> StudentRecords = new ArrayList<StudentRecord>();
+    protected String fname;
+    protected String lname;
+    protected String mname;
+    protected String fullname;
+    protected String idnum;
+    protected String course;
 
     @FXML
     private TextField courseField;
@@ -81,9 +84,11 @@ public class Input {
 
     @FXML
     private TextField writtenWeightField;
-    StudentRecord student = new StudentRecord(" Test", "Test", "Test", "Test","Test","Test");
+    @FXML
+    private TextField idnumgradeField;
+    //
+    private int studentNumber;
 
-         
 
          public void nextButtonClicked(ActionEvent event) throws IOException{
 
@@ -94,7 +99,6 @@ public class Input {
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
              gradeStage.show();
-
              gradeStage.setTitle("Input Grades");
 
          }
@@ -119,11 +123,18 @@ public class Input {
                 float writtenGrade = Float.parseFloat(writtenGradeField.getText());
                 float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
                 float quizGrade = Float.parseFloat(quizGradeField.getText());
-                float quizWeightage =Float.parseFloat(quizWeightField.getText());
+                float quizWeightage = Float.parseFloat(quizWeightField.getText());
                 float examGrade = Float.parseFloat(examGradeField.getText());
                 float examWeight = Float.parseFloat(examWeightField.getText());
 
-                student.addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                if(studentChecker().equals("Exists")) {
+                    StudentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                }
+                else{
+                    nullStudentAlert("Student with the given id-number does not exist! Please try again!");
+
+                }
+
             }
             catch (NumberFormatException e) {
                 invalidInputAlert("Wrongly inputted a character in the grades and weightage! Please input numeric characters!");
@@ -132,9 +143,7 @@ public class Input {
 
          }
 
-
-
-    public void toInput(){
+        public void toInput(){
              //Student Info input
              fname = firstnameField.getText();
               mname = middlenameField.getText();
@@ -150,7 +159,7 @@ public class Input {
              if(duplicateChecker().equals("No Duplicate")){
                  //Storing the student info to array
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
-                 StudentRecord.add(student);
+                 StudentRecords.add(student);
              }
 
              //If there's a duplicate record
@@ -177,10 +186,10 @@ public class Input {
 
          }
 
-         public String duplicateChecker() {
+        public String duplicateChecker() {
              String duplicateCheck = "No Duplicate";
-             for (int k = 0; k < StudentRecord.size(); k++) {
-                 if (StudentRecord.get(k).getFirstname().equals(fname) && StudentRecord.get(k).getLastname().equals(lname)) {
+             for (int k = 0; k < StudentRecords .size(); k++) {
+                 if (StudentRecords.get(k).getFirstname().equals(fname) && StudentRecords.get(k).getLastname().equals(lname)) {
                     duplicateCheck = "Duplicate Found";
                  }
                  else{
@@ -188,20 +197,53 @@ public class Input {
                  }
              }
              return duplicateCheck;
-         }
+        }
 
-         public void invalidInputAlert(String message){
+        public void invalidInputAlert(String message){
              Alert invalidInput = new Alert(Alert.AlertType.ERROR);
              invalidInput.setTitle("Invalid input");
              invalidInput.setHeaderText("Invalid character input");
              invalidInput.setContentText(message);
              invalidInput.showAndWait();
+        }
+        public void nullStudentAlert(String message){
+            Alert invalidInput = new Alert(Alert.AlertType.ERROR);
+            invalidInput.setTitle("No Student found!");
+            invalidInput.setHeaderText("Error! No Student found!");
+            invalidInput.setContentText(message);
+            invalidInput.showAndWait();
 
          }
+        public String studentChecker(){
+            String studentChecker = "Exists";
+            for (int i = 0; i < StudentRecords.size(); i++) {
+                if (idnumgradeField.getText().equals(StudentRecords.get(i).getIdnum())) {
+                    studentChecker = "Exists";
+                    studentNumber = i;
+                }
+                else{
+                    studentChecker = "Does not exists";
+                }
+            }
+            return studentChecker;
+        }
+
+        public void testInput(){
+            StudentRecord testStudent = new StudentRecord(" Test", "Test", "Test", "Test","Test","Test");
+            StudentRecords.add(testStudent);
+        }
+        public void arrayConversion(ArrayList<StudentRecord> studentRecordList){
+            ObservableList<StudentRecord> observableList = FXCollections.observableList(studentRecordList);
+
+
+        }
 
 
 
-      }
+
+    }
+
+
 
 
 
