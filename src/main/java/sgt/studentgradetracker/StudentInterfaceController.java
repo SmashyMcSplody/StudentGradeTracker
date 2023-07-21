@@ -37,6 +37,9 @@ public class StudentInterfaceController {
     @FXML
     private Label idLabel;
 
+    @FXML
+    private Label courseLabel;
+
     // Store the User object
     private User user;
 
@@ -48,6 +51,7 @@ public class StudentInterfaceController {
             String fullName = sampleRecord.getFname() + " " + sampleRecord.getLname();
             nameLabel.setText(fullName);
             idLabel.setText(sampleRecord.getId());
+            courseLabel.setText(sampleRecord.getCourse());
 
 
     }
