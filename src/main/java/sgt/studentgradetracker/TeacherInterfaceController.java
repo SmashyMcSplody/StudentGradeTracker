@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,6 +38,10 @@ public class TeacherInterfaceController {
     private TableColumn<SampleRecord, String> idColumn;
     @FXML
     private TableColumn<SampleRecord, String> courseColumn;
+
+    private Scene scene;
+    private Stage stage;
+    private Parent root;
 
     private ObservableList<SampleRecord> sampleRecords;
 
@@ -73,6 +78,20 @@ public class TeacherInterfaceController {
         courseColumn.setCellValueFactory(cellData -> cellData.getValue().courseProperty());
     }
 
+
+    @FXML
+    private void handleLogoutButtonAction(ActionEvent event) throws IOException {
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+        Parent root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setTitle("");
+    }
     @FXML
     private void AnalyticButtonClicked(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -81,18 +100,28 @@ public class TeacherInterfaceController {
         alert.setContentText("Button Clicked");
         alert.showAndWait();
     }
-
-    @FXML
-    private void handleLogoutButtonAction(ActionEvent event) throws IOException {
-
-        // Load the login scene and set it as the new scene in the primary stage
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
-        Parent loginRoot = fxmlLoader.load();
-        Scene loginScene = new Scene(loginRoot);
-
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(loginScene);
+     @FXML
+      private void createButtonClicked(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
+        Parent root = loader.load();
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
+
+        stage.setTitle("Create new record");
+    }
+    @FXML
+    private void classGradesButtonAction(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
+        Parent root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setTitle("Class Grades");
     }
 
 }

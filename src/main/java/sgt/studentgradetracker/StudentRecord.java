@@ -1,16 +1,77 @@
 package sgt.studentgradetracker;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
-public class StudentRecord{
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+public class StudentRecord extends StudentGrade{
     protected String firstname;
     protected String middlename;
     protected String lastname;
     protected String fullname;
     protected String idnum;
     protected String course;
-    Scanner input = new Scanner(System.in);
+
+    private Scene scene;
+    private Stage stage;
+
+        @FXML
+        private TableColumn<?, ?> courseColumn;
+
+        @FXML
+        private Button createButton;
+
+        @FXML
+        private TableColumn<?, ?> examGradeColumn;
+
+        @FXML
+        private TableColumn<?, ?> finalGradeColumn;
+
+        @FXML
+        private TableColumn<?, ?> fullnameColumn;
+
+        @FXML
+        private Button homeButton;
+
+        @FXML
+        private TableColumn<?, ?> idColumn;
+
+        @FXML
+        private Label idLabel1;
+
+        @FXML
+        private Button logoutButton;
+
+        @FXML
+        private TableColumn<?, ?> quizGradeColumn;
+
+        @FXML
+        private TableView<?> subjectGradeTable;
+
+        @FXML
+        private Label subjectGradesLabel;
+
+        @FXML
+
+        private TableColumn<?, ?> writtenGradeColumn;
+
     ArrayList<StudentGrade> subjectGrades = new ArrayList<StudentGrade>();
+
+    public StudentRecord(){
+
+    }
 
      
 
@@ -34,11 +95,58 @@ public class StudentRecord{
              subjectGrades.add(studentGrade);
 
          }
+        public void createButtonClicked(ActionEvent event) throws IOException{
 
-    public String getFirstname() {
+         //WIll open the grade inputting scene;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
+            Parent root = loader.load();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+                 stage.setTitle("Class Grades");
+        }
+
+        public void homeButtonClicked(ActionEvent event) throws IOException{
+
+         //WIll open the grade inputting scene;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+            Parent root = loader.load();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+                stage.setTitle("Student Grade Tracker");
+        }
+
+        public void logoutButtonClicked(ActionEvent event) throws IOException{
+
+            //WIll open the grade inputting scene;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+                Parent root = loader.load();
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+                stage.setTitle("");
+        }
+
+
+
+
+        public String getFirstname() {
         return firstname;
     }
-    public String getLastname(){
+        public String getLastname(){
              return  lastname;
     }
+
+        public String getIdnum(){ return idnum; }
+
+        public  String getFullname(){
+             return fullname;
+        }
 }

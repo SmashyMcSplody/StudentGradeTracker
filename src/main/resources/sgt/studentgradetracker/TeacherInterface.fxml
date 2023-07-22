@@ -40,7 +40,7 @@
                   </Text>
                </children>
             </Pane>
-            <Button fx:id="createButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#createButtonClicked" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Create Records" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#createButtonClicked" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Create Records" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#AnalyticButtonClicked" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Class Grades" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#classGradesButtonAction" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Class Grades" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>

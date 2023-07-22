@@ -19,7 +19,6 @@ import javax.security.auth.Subject;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static javafx.collections.FXCollections.*;
 
@@ -86,10 +85,16 @@ public class Input {
     private TextField writtenWeightField;
     @FXML
     private TextField idnumgradeField;
+    @FXML
+    private Button classGradesButton;
     //
     private int studentNumber;
 
+    public Input(){
 
+    }
+
+         @FXML
          public void nextButtonClicked(ActionEvent event) throws IOException{
 
              //WIll open the grade inputting scene;
@@ -102,6 +107,7 @@ public class Input {
              gradeStage.setTitle("Input Grades");
 
          }
+         @FXML
          public void backButtonClicked(ActionEvent event) throws IOException{
 
              //WIll open the grade inputting scene;
@@ -115,35 +121,79 @@ public class Input {
              gradeStage.setTitle("Input Student Data");
          }
 
-
+        @FXML
         public void addButtonClicked(ActionEvent event) {
-             String subject = subjectField.getText();
+            if (subjectField.getText().equals("")) {
+                invalidInputAlert("Please input the complete data!");
+            } else {
+                    String subject = subjectField.getText();
 
-            try {
-                float writtenGrade = Float.parseFloat(writtenGradeField.getText());
-                float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
-                float quizGrade = Float.parseFloat(quizGradeField.getText());
-                float quizWeightage = Float.parseFloat(quizWeightField.getText());
-                float examGrade = Float.parseFloat(examGradeField.getText());
-                float examWeight = Float.parseFloat(examWeightField.getText());
+                    try {
+                        float writtenGrade = Float.parseFloat(writtenGradeField.getText());
+                        float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
+                        float quizGrade = Float.parseFloat(quizGradeField.getText());
+                        float quizWeightage = Float.parseFloat(quizWeightField.getText());
+                        float examGrade = Float.parseFloat(examGradeField.getText());
+                        float examWeight = Float.parseFloat(examWeightField.getText());
 
-                if(studentChecker().equals("Exists")) {
-                    StudentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                        String checker = studentChecker();
+
+                        if (checker.equals("Exists")) {
+                            StudentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                        } else {
+                            nullStudentAlert("Student with the given id-number does not exist! Please try again!");
+
+                        }
+
+                    }   catch (NumberFormatException e) {
+                        invalidInputAlert("Wrongly inputted a character in the grades and weightage! Please input numeric characters!");
+
+                    }
                 }
-                else{
-                    nullStudentAlert("Student with the given id-number does not exist! Please try again!");
+        }
+        @FXML
+        public void classGradesButtonClicked(ActionEvent event)throws IOException{
 
-                }
+            //WIll open the grade inputting scene;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
+            Parent root = loader.load();
+            gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            gradeScene = new Scene(root);
+            gradeStage.setScene(gradeScene);
+            gradeStage.show();
 
-            }
-            catch (NumberFormatException e) {
-                invalidInputAlert("Wrongly inputted a character in the grades and weightage! Please input numeric characters!");
+            gradeStage.setTitle("Class Grades");
+        }
+        @FXML
+        public void homeButtonClicked(ActionEvent event)throws IOException{
 
-            }
+            //WIll open the grade inputting scene;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+                Parent root = loader.load();
+                gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                gradeScene = new Scene(root);
+                gradeStage.setScene(gradeScene);
+                gradeStage.show();
 
+                    gradeStage.setTitle("Class Grades");
          }
+        @FXML
+        private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
-        public void toInput(){
+            //WIll open the grade inputting scene;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+            Parent root = loader.load();
+            gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            gradeScene = new Scene(root);
+            gradeStage.setScene(gradeScene);
+            gradeStage.show();
+
+            gradeStage.setTitle("");
+        }
+
+
+        @FXML
+        public void toInput() throws IOException {
              //Student Info input
              fname = firstnameField.getText();
               mname = middlenameField.getText();
@@ -154,34 +204,23 @@ public class Input {
                   idnum = idnumField.getText();
                     course = courseField.getText();
 
+
               //Code will then check
              //If no duplicate then it will store the student data
              if(duplicateChecker().equals("No Duplicate")){
                  //Storing the student info to array
+                 successAlert(fullname);
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
                  StudentRecords.add(student);
+
              }
 
              //If there's a duplicate record
              else{
                  //Will open the errorStage fxml file
-                 try{
-                     // Load the teacher interface FXML file
-                     FXMLLoader loader = new FXMLLoader(getClass().getResource("ErrorStage.fxml"));
-                     Parent root = loader.load();
+                 duplicateAlert();
 
-                     // Create a new stage for the teacher interface
-                     Stage errorStage = new Stage();
-                     errorStage.setTitle("Duplicate record found!");
-                     // Will make the stage unresizable so it stays as a small window
-                     errorStage.setResizable(false);
-                     //Scene resolution
-                     errorStage.setScene(new Scene (root, 300, 200));
 
-                     errorStage.show();
-                 }catch (IOException e){
-                     e.printStackTrace();
-                 }
              }
 
          }
@@ -237,6 +276,24 @@ public class Input {
 
 
         }
+
+    public void duplicateAlert() throws IOException {
+        // Will open the grade inputting scene;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DuplicateAlert.fxml"));
+        Parent root = loader.load();
+        gradeStage = new Stage();
+        gradeScene = new Scene(root);
+        gradeStage.setScene(gradeScene);
+        gradeStage.show();
+        gradeStage.setTitle("Error!");
+        gradeStage.setResizable(false);
+    }
+    public void successAlert(String fullname){
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Sucess!");
+        success.setContentText("Sucessfully Created a student record for" + fullname);
+        success.showAndWait();
+    }
 
 
 

@@ -1,6 +1,6 @@
 package sgt.studentgradetracker;
 
-public class StudentGrade {
+public class StudentGrade{
     protected String subject;
     protected float QuizGrade;
     protected float ExamGrade;
