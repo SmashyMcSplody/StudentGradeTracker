@@ -93,9 +93,6 @@ public class Input {
     private int studentIndex = 0;
 
     public void initialize(){
-        this.teacherController =get
-        StudentRecord dummyStudent = new StudentRecord();
-        teacherController.getStudentRecords().add(dummyStudent);
 
     }
 

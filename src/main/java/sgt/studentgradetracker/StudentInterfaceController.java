@@ -78,14 +78,6 @@ public class StudentInterfaceController {
         gradeColumn.setCellValueFactory(cellData -> cellData.getValue().gradeProperty());
     }
 
-    @FXML
-    private void AnalyticButtonClicked(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("example");
-        alert.setHeaderText(null);
-        alert.setContentText("Button Clicked");
-        alert.showAndWait();
-    }
     
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
