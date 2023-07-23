@@ -1,5 +1,9 @@
 package sgt.studentgradetracker;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,7 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class StudentRecord extends StudentGrade{
+public class StudentRecord extends User{
     protected String firstname;
     protected String middlename;
     protected String lastname;
@@ -26,6 +30,8 @@ public class StudentRecord extends StudentGrade{
 
     private Scene scene;
     private Stage stage;
+
+
 
         @FXML
         private TableColumn<?, ?> courseColumn;
@@ -67,16 +73,24 @@ public class StudentRecord extends StudentGrade{
 
         private TableColumn<?, ?> writtenGradeColumn;
 
-    ArrayList<StudentGrade> subjectGrades = new ArrayList<StudentGrade>();
+       private ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
 
-    public StudentRecord(){
 
-    }
+        public StudentRecord(){
+            super("Dummy", "password", "Dummy");
+             firstname = "Dummy";
+              middlename = "Dummy";
+               lastname = "Dummy";
+                fullname = "Dummy Dummy Dummy";
+                 idnum = "0000-0000";
+                  course = "BS Dummy Dummy";
+         }
 
      
 
         //constructor functions
-         public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour){
+         public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour, String username, String password, String role){
+            super(username, password, role);
              firstname = fname;
               middlename = mname;
                lastname = lname;
@@ -85,8 +99,6 @@ public class StudentRecord extends StudentGrade{
                   course = cour;
 
 
-                      StudentGrade studentsGrade = new StudentGrade();
-                      subjectGrades.add(studentsGrade);
                   }
          public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
 
@@ -137,16 +149,30 @@ public class StudentRecord extends StudentGrade{
 
 
 
-        public String getFirstname() {
-        return firstname;
-    }
-        public String getLastname(){
-             return  lastname;
-    }
-
+        public String getFirstname() {return firstname;}
+        public String getLastname(){return  lastname;}
         public String getIdnum(){ return idnum; }
+        public  String getFullname(){ return fullname;}
 
-        public  String getFullname(){
-             return fullname;
+        public StringProperty getfnameProperty(){
+           StringProperty fname = new SimpleStringProperty(firstname);
+            return fname;
+
+        }
+        public StringProperty getmnameProperty(){
+            StringProperty mname = new SimpleStringProperty(middlename);
+             return mname;
+        }
+        public StringProperty getlnameProperty(){
+            StringProperty lname = new SimpleStringProperty(lastname);
+             return lname;
+        }
+        public StringProperty getidProperty(){
+            StringProperty id = new SimpleStringProperty(idnum);
+             return id;
+        }
+        public StringProperty getcourseProperty(){
+            StringProperty cours = new SimpleStringProperty(course);
+             return cours;
         }
 }

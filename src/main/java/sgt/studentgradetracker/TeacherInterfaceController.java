@@ -12,15 +12,16 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class TeacherInterfaceController {
+public class TeacherInterfaceController{
 
     public Button logoutButton;
     public TableColumn subjectColumn;
     public TableColumn gradeColumn;
 
     @FXML
-    private TableView<SampleRecord> tableView;
+    private TableView<StudentRecord> tableView;
 
     @FXML
     private Label nameLabel;
@@ -29,21 +30,23 @@ public class TeacherInterfaceController {
     private Label idLabel;
 
     @FXML
-    private TableColumn<SampleRecord, String> fnameColumn;
+    private TableColumn<StudentRecord, String> fnameColumn;
     @FXML
-    private TableColumn<SampleRecord, String> mnameColumn;
+    private TableColumn<StudentRecord, String> mnameColumn;
     @FXML
-    private TableColumn<SampleRecord, String> lnameColumn;
+    private TableColumn<StudentRecord, String> lnameColumn;
     @FXML
-    private TableColumn<SampleRecord, String> idColumn;
+    private TableColumn<StudentRecord, String> idColumn;
     @FXML
-    private TableColumn<SampleRecord, String> courseColumn;
+    private TableColumn<StudentRecord, String> courseColumn;
+    protected ObservableList<StudentRecord> StudentRecords = FXCollections.observableArrayList();
 
     private Scene scene;
     private Stage stage;
     private Parent root;
 
-    private ObservableList<SampleRecord> sampleRecords;
+
+
 
     // Store the User object
     private User user;
@@ -60,22 +63,16 @@ public class TeacherInterfaceController {
 
     @FXML
     public void initialize() {
-        // Create the list to store the student objects
-        sampleRecords = FXCollections.observableArrayList();
-
-        // Sample data (you can add more students here)
-        SampleRecordDeclare declare = new SampleRecordDeclare();
-        sampleRecords.addAll(declare.getStudentList());
 
         // Set the data to be displayed in the TableView
-        tableView.setItems(sampleRecords);
+        tableView.setItems(StudentRecords);
 
         // Define how the columns will get their data from the SampleRecord objects
-        fnameColumn.setCellValueFactory(cellData -> cellData.getValue().fnameProperty());
-        mnameColumn.setCellValueFactory(cellData -> cellData.getValue().mnameProperty());
-        lnameColumn.setCellValueFactory(cellData -> cellData.getValue().lnameProperty());
-        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-        courseColumn.setCellValueFactory(cellData -> cellData.getValue().courseProperty());
+        fnameColumn.setCellValueFactory(cellData -> cellData.getValue().getfnameProperty());
+        mnameColumn.setCellValueFactory(cellData -> cellData.getValue().getmnameProperty());
+        lnameColumn.setCellValueFactory(cellData -> cellData.getValue().getlnameProperty());
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getidProperty());
+        courseColumn.setCellValueFactory(cellData -> cellData.getValue().getcourseProperty());
     }
 
 
@@ -104,6 +101,8 @@ public class TeacherInterfaceController {
       private void createButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
         Parent root = loader.load();
+        Input inputController = loader.getController();
+        inputController.setTeacherController(this);
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -124,4 +123,19 @@ public class TeacherInterfaceController {
         stage.setTitle("Class Grades");
     }
 
+    @FXML
+    private void refreshButtonClicked(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setTitle("Records");
+
+    }
+    protected ObservableList<StudentRecord> getStudentRecords(){
+        return StudentRecords;
+    }
 }

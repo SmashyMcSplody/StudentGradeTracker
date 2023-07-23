@@ -105,12 +105,12 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="idnumgradeField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="idnumgradeField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="subjectField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Subject" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="subjectField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Subject" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -133,17 +133,17 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="writtenGradeField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Written Grade" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="writtenGradeField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Written Grade" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="quizGradeField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Quiz Grade" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="quizGradeField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Quiz Grade" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="examGradeField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Exam Grade" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="examGradeField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Exam Grade" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -161,17 +161,17 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="writtenWeightField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Written" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="writtenWeightField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Written" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="quizWeightField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Quiz" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="quizWeightField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Quiz" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="examWeightField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Exam" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="examWeightField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Exam" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

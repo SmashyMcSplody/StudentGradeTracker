@@ -24,7 +24,7 @@ import static javafx.collections.FXCollections.*;
 
 public class Input {
 //declarations
-    ArrayList<StudentRecord> StudentRecords = new ArrayList<StudentRecord>();
+
     protected String fname;
     protected String lname;
     protected String mname;
@@ -87,10 +87,15 @@ public class Input {
     private TextField idnumgradeField;
     @FXML
     private Button classGradesButton;
-    //
-    private int studentNumber;
+    private TeacherInterfaceController teacherController;
 
-    public Input(){
+    private int studentNumber;
+    private int studentIndex = 0;
+
+    public void initialize(){
+        this.teacherController =get
+        StudentRecord dummyStudent = new StudentRecord();
+        teacherController.getStudentRecords().add(dummyStudent);
 
     }
 
@@ -136,10 +141,8 @@ public class Input {
                         float examGrade = Float.parseFloat(examGradeField.getText());
                         float examWeight = Float.parseFloat(examWeightField.getText());
 
-                        String checker = studentChecker();
-
-                        if (checker.equals("Exists")) {
-                            StudentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                        if (findStudentbyIdNum().equals("Exists")) {
+                            teacherController.getStudentRecords().get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
                         } else {
                             nullStudentAlert("Student with the given id-number does not exist! Please try again!");
 
@@ -170,12 +173,16 @@ public class Input {
             //WIll open the grade inputting scene;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
                 Parent root = loader.load();
+                TeacherInterfaceController controller = loader.getController();
+                controller.initialize();
                 gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 gradeScene = new Scene(root);
                 gradeStage.setScene(gradeScene);
                 gradeStage.show();
 
                     gradeStage.setTitle("Class Grades");
+
+
          }
         @FXML
         private void handleLogoutButtonAction(ActionEvent event) throws IOException {
@@ -194,6 +201,7 @@ public class Input {
 
         @FXML
         public void toInput() throws IOException {
+
              //Student Info input
              fname = firstnameField.getText();
               mname = middlenameField.getText();
@@ -209,17 +217,23 @@ public class Input {
              //If no duplicate then it will store the student data
              if(duplicateChecker().equals("No Duplicate")){
                  //Storing the student info to array
-                 successAlert(fullname);
-                 StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
-                 StudentRecords.add(student);
+
+                 String username = fname +"." +lname;
+                 StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course, username, "password", "student");
+                 teacherController.getStudentRecords().add(student);
+                 successAlert(teacherController.getStudentRecords().get(studentIndex).getFullname());
+                 studentIndex++;
+
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+                 Parent root = loader.load();
+                 TeacherInterfaceController controller = loader.getController();
+                 controller.initialize();
 
              }
-
              //If there's a duplicate record
              else{
                  //Will open the errorStage fxml file
                  duplicateAlert();
-
 
              }
 
@@ -227,8 +241,8 @@ public class Input {
 
         public String duplicateChecker() {
              String duplicateCheck = "No Duplicate";
-             for (int k = 0; k < StudentRecords .size(); k++) {
-                 if (StudentRecords.get(k).getFirstname().equals(fname) && StudentRecords.get(k).getLastname().equals(lname)) {
+             for (int k = 0; k < teacherController.getStudentRecords().size(); k++) {
+                 if (teacherController.getStudentRecords().get(k).getFirstname().equals(fname) && teacherController.getStudentRecords().get(k).getLastname().equals(lname)) {
                     duplicateCheck = "Duplicate Found";
                  }
                  else{
@@ -253,29 +267,21 @@ public class Input {
             invalidInput.showAndWait();
 
          }
-        public String studentChecker(){
-            String studentChecker = "Exists";
-            for (int i = 0; i < StudentRecords.size(); i++) {
-                if (idnumgradeField.getText().equals(StudentRecords.get(i).getIdnum())) {
+        public String findStudentbyIdNum(){
+            String studentChecker = "Does not Exist";
+            String idnumGrade = idnumgradeField.getText();
+            for(int i = 0; i < teacherController.getStudentRecords().size(); i++){
+                if (idnumGrade.equals(teacherController.getStudentRecords().get(i-1).getIdnum())) {
                     studentChecker = "Exists";
-                    studentNumber = i;
-                }
-                else{
-                    studentChecker = "Does not exists";
+                    studentNumber = i-1;
+
+                    break;
                 }
             }
+            feedbackAlert(studentChecker);
             return studentChecker;
         }
 
-        public void testInput(){
-            StudentRecord testStudent = new StudentRecord(" Test", "Test", "Test", "Test","Test","Test");
-            StudentRecords.add(testStudent);
-        }
-        public void arrayConversion(ArrayList<StudentRecord> studentRecordList){
-            ObservableList<StudentRecord> observableList = FXCollections.observableList(studentRecordList);
-
-
-        }
 
     public void duplicateAlert() throws IOException {
         // Will open the grade inputting scene;
@@ -294,6 +300,19 @@ public class Input {
         success.setContentText("Sucessfully Created a student record for" + fullname);
         success.showAndWait();
     }
+    public void feedbackAlert(String feedback){
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        success.setTitle("Success!");
+        success.setContentText(feedback);
+        success.showAndWait();
+    }
+
+    public void setTeacherController(TeacherInterfaceController teacherController){
+        this.teacherController = teacherController;
+
+    }
+
+
 
 
 

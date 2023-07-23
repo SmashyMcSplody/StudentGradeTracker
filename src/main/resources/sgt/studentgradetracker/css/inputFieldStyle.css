@@ -1,0 +1,11 @@
+TextField {
+    -fx-background-color: lightblue; /* Set the background color */
+    -fx-text-fill: white; /* Set the font color */
+}
+
+TextField :hover{
+
+    -fx-border-color: white; /* Set the background color */
+    -fx-border-width: 0px 0px 2px 0px
+
+}

@@ -135,5 +135,13 @@
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Label>
+      <Button fx:id="refreshButton" layoutX="856.0" layoutY="215.0" mnemonicParsing="false" onAction="#refreshButtonClicked" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/inputButtonStyle.css" text="Refresh" textFill="#f2eaea">
+         <font>
+            <Font name="Century Gothic Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

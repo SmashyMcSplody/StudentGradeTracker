@@ -9,7 +9,7 @@ public class StudentGrade{
 
 
          public StudentGrade(){
-             subject = " ";
+           subject = "No subject";
             QuizGrade = 0;
              ExamGrade = 0;
                WrittenGrade = 0;

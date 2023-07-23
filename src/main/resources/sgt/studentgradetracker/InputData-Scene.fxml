@@ -105,17 +105,17 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="firstnameField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Firstname" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="firstnameField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="Firstname" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="middlenameField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Middlename" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="middlenameField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Middlename" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="lastnameField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Lastname" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="lastnameField" alignment="TOP_CENTER" layoutX="480.0" prefHeight="30.0" prefWidth="200.0" promptText="Lastname" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -133,12 +133,12 @@
                      <children>
                         <Pane prefHeight="30.0" prefWidth="700.0">
                            <children>
-                              <TextField fx:id="idnumField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="idnumField" alignment="TOP_CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="200.0" promptText="ID Number" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="courseField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Course" style="-fx-background-color: #0c1d35;">
+                              <TextField fx:id="courseField" alignment="TOP_CENTER" layoutX="250.0" prefHeight="30.0" prefWidth="200.0" promptText="Course" style="-fx-background-color: #0c1d35;" stylesheets="@css/inputFieldStyle.css">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
