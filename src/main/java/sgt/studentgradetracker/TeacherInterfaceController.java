@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TeacherInterfaceController{
+public class TeacherInterfaceController extends Input {
 
     public Button logoutButton;
     public TableColumn subjectColumn;
@@ -39,13 +39,11 @@ public class TeacherInterfaceController{
     private TableColumn<StudentRecord, String> idColumn;
     @FXML
     private TableColumn<StudentRecord, String> courseColumn;
-    protected ObservableList<StudentRecord> StudentRecords = FXCollections.observableArrayList();
+
 
     private Scene scene;
     private Stage stage;
     private Parent root;
-
-
 
 
     // Store the User object
@@ -61,11 +59,12 @@ public class TeacherInterfaceController{
         idLabel.setText(sampleRecord.getId());
     }
 
-    @FXML
-    public void initialize() {
 
+    @FXML
+    protected void initialize(ObservableList<StudentRecord> studentRecords) {
+        super.initializeInput(studentRecords);
         // Set the data to be displayed in the TableView
-        tableView.setItems(StudentRecords);
+        tableView.setItems(studentRecords);
 
         // Define how the columns will get their data from the SampleRecord objects
         fnameColumn.setCellValueFactory(cellData -> cellData.getValue().getfnameProperty());
@@ -82,40 +81,44 @@ public class TeacherInterfaceController{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
         Parent root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
         stage.setTitle("");
     }
+
     @FXML
-    private void AnalyticButtonClicked(){
+    private void AnalyticButtonClicked() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("example");
         alert.setHeaderText(null);
         alert.setContentText("Button Clicked");
         alert.showAndWait();
     }
-     @FXML
-      private void createButtonClicked(ActionEvent actionEvent) throws IOException {
+
+    @FXML
+    private void createButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
         Parent root = loader.load();
-        Input inputController = loader.getController();
-        inputController.setTeacherController(this);
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Input input = loader.getController();
+        input.initializeInput(studentRecords); // Pass the same studentRecords list
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
         stage.setTitle("Create new record");
     }
+
     @FXML
     private void classGradesButtonAction(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
         Parent root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        StudentGrade subjectGrades = loader.getController();
+        subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -123,19 +126,4 @@ public class TeacherInterfaceController{
         stage.setTitle("Class Grades");
     }
 
-    @FXML
-    private void refreshButtonClicked(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-        stage.setTitle("Records");
-
-    }
-    protected ObservableList<StudentRecord> getStudentRecords(){
-        return StudentRecords;
-    }
 }

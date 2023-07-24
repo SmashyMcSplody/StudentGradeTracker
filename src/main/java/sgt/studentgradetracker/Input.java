@@ -1,6 +1,7 @@
 package sgt.studentgradetracker;
 
 
+import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -87,12 +88,13 @@ public class Input {
     private TextField idnumgradeField;
     @FXML
     private Button classGradesButton;
-    private TeacherInterfaceController teacherController;
 
     private int studentNumber;
     private int studentIndex = 0;
+    protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();;
 
-    public void initialize(){
+    public void initializeInput(ObservableList<StudentRecord> studentRecords) {
+        this.studentRecords = studentRecords;
 
     }
 
@@ -102,6 +104,8 @@ public class Input {
              //WIll open the grade inputting scene;
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
              Parent root = loader.load();
+             Input inputGradesController = loader.getController();
+             inputGradesController.initializeInput(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -115,6 +119,8 @@ public class Input {
              //WIll open the grade inputting scene;
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
              Parent root = loader.load();
+             Input inputDataController = loader.getController();
+             inputDataController.initializeInput(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -139,7 +145,7 @@ public class Input {
                         float examWeight = Float.parseFloat(examWeightField.getText());
 
                         if (findStudentbyIdNum().equals("Exists")) {
-                            teacherController.getStudentRecords().get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                          studentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
                         } else {
                             nullStudentAlert("Student with the given id-number does not exist! Please try again!");
 
@@ -157,6 +163,8 @@ public class Input {
             //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
+            StudentGrade GradesController = loader.getController();
+            GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -167,18 +175,15 @@ public class Input {
         @FXML
         public void homeButtonClicked(ActionEvent event)throws IOException{
 
-            //WIll open the grade inputting scene;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
-                Parent root = loader.load();
-                TeacherInterfaceController controller = loader.getController();
-                controller.initialize();
-                gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                gradeScene = new Scene(root);
-                gradeStage.setScene(gradeScene);
-                gradeStage.show();
-
-                    gradeStage.setTitle("Class Grades");
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+            Parent root = loader.load();
+            TeacherInterfaceController controller = loader.getController();
+            controller.initialize(studentRecords); // Pass the same studentRecords list
+            gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            gradeScene = new Scene(root);
+            gradeStage.setScene(gradeScene);
+            gradeStage.show();
+            gradeStage.setTitle("Student Grade Tracker");
 
          }
         @FXML
@@ -214,17 +219,17 @@ public class Input {
              //If no duplicate then it will store the student data
              if(duplicateChecker().equals("No Duplicate")){
                  //Storing the student info to array
-
+                 ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
                  String username = fname +"." +lname;
-                 StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course, username, "password", "student");
-                 teacherController.getStudentRecords().add(student);
-                 successAlert(teacherController.getStudentRecords().get(studentIndex).getFullname());
+                 StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
+                 studentRecords.add(student);
+                 successAlert(studentRecords.get(studentIndex).getFullname());
                  studentIndex++;
 
                  FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
                  Parent root = loader.load();
                  TeacherInterfaceController controller = loader.getController();
-                 controller.initialize();
+                 controller.initialize(studentRecords);
 
              }
              //If there's a duplicate record
@@ -238,14 +243,19 @@ public class Input {
 
         public String duplicateChecker() {
              String duplicateCheck = "No Duplicate";
-             for (int k = 0; k < teacherController.getStudentRecords().size(); k++) {
-                 if (teacherController.getStudentRecords().get(k).getFirstname().equals(fname) && teacherController.getStudentRecords().get(k).getLastname().equals(lname)) {
-                    duplicateCheck = "Duplicate Found";
-                 }
-                 else{
-                     duplicateCheck = "No Duplicate";
-                 }
-             }
+            if (studentRecords.size() > 0){
+                for (int k = 0; k < studentRecords.size(); k++) {
+                    if (studentRecords.get(k).getFirstname().equals(fname) && studentRecords.get(k).getLastname().equals(lname)) {
+                        duplicateCheck = "Duplicate Found";
+                    } else {
+                        duplicateCheck = "No Duplicate";
+                    }
+                }
+            }
+            else{
+                duplicateCheck = "No Duplicate";
+            }
+
              return duplicateCheck;
         }
 
@@ -267,10 +277,10 @@ public class Input {
         public String findStudentbyIdNum(){
             String studentChecker = "Does not Exist";
             String idnumGrade = idnumgradeField.getText();
-            for(int i = 0; i < teacherController.getStudentRecords().size(); i++){
-                if (idnumGrade.equals(teacherController.getStudentRecords().get(i-1).getIdnum())) {
+            for(int i = 0; i < studentRecords.size(); i++){
+                if (idnumGrade.equals(studentRecords.get(i).getIdnum())) {
                     studentChecker = "Exists";
-                    studentNumber = i-1;
+                    studentNumber = i;
 
                     break;
                 }
@@ -304,9 +314,8 @@ public class Input {
         success.showAndWait();
     }
 
-    public void setTeacherController(TeacherInterfaceController teacherController){
-        this.teacherController = teacherController;
-
+    public ObservableList<StudentRecord> getStudentRecords(){
+        return studentRecords;
     }
 
 

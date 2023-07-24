@@ -1,5 +1,5 @@
 package sgt.studentgradetracker;
-
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -12,15 +12,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
-public class StudentRecord extends User{
+
+public class StudentRecord extends Input{
     protected String firstname;
     protected String middlename;
     protected String lastname;
@@ -31,72 +25,21 @@ public class StudentRecord extends User{
     private Scene scene;
     private Stage stage;
 
-
-
-        @FXML
-        private TableColumn<?, ?> courseColumn;
-
-        @FXML
-        private Button createButton;
-
-        @FXML
-        private TableColumn<?, ?> examGradeColumn;
-
-        @FXML
-        private TableColumn<?, ?> finalGradeColumn;
-
-        @FXML
-        private TableColumn<?, ?> fullnameColumn;
-
-        @FXML
-        private Button homeButton;
-
-        @FXML
-        private TableColumn<?, ?> idColumn;
-
-        @FXML
-        private Label idLabel1;
-
-        @FXML
-        private Button logoutButton;
-
-        @FXML
-        private TableColumn<?, ?> quizGradeColumn;
-
-        @FXML
-        private TableView<?> subjectGradeTable;
-
-        @FXML
-        private Label subjectGradesLabel;
-
-        @FXML
-
-        private TableColumn<?, ?> writtenGradeColumn;
-
        private ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
 
 
-        public StudentRecord(){
-            super("Dummy", "password", "Dummy");
-             firstname = "Dummy";
-              middlename = "Dummy";
-               lastname = "Dummy";
-                fullname = "Dummy Dummy Dummy";
-                 idnum = "0000-0000";
-                  course = "BS Dummy Dummy";
-         }
 
      
 
         //constructor functions
-         public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour, String username, String password, String role){
-            super(username, password, role);
+         public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour){
              firstname = fname;
               middlename = mname;
                lastname = lname;
                 fullname = funame;
                  idnum = id;
                   course = cour;
+                  subjectGrades = FXCollections.observableArrayList();
 
 
                   }
@@ -106,12 +49,14 @@ public class StudentRecord extends User{
 
              subjectGrades.add(studentGrade);
 
-         }
+          }
         public void createButtonClicked(ActionEvent event) throws IOException{
 
          //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
             Parent root = loader.load();
+            Input inputDataController = loader.getController();
+            inputDataController.initializeInput(studentRecords); // Pass the same studentRecords list
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -171,8 +116,20 @@ public class StudentRecord extends User{
             StringProperty id = new SimpleStringProperty(idnum);
              return id;
         }
-        public StringProperty getcourseProperty(){
+        public  StringProperty getcourseProperty(){
             StringProperty cours = new SimpleStringProperty(course);
              return cours;
         }
+
+        public StringProperty getfullnameProperty(){
+             StringProperty funame = new SimpleStringProperty(fullname);
+             return funame;
+        }
+
+
+        public ObservableList<StudentGrade> getSubjectGrades() {
+
+        return subjectGrades;
+         }
+
 }
