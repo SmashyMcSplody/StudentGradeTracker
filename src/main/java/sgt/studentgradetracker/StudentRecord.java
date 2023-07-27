@@ -1,35 +1,26 @@
 package sgt.studentgradetracker;
-import javafx.beans.property.SimpleFloatProperty;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-
-
-public class StudentRecord extends Input{
+public class StudentRecord{
     protected String firstname;
     protected String middlename;
     protected String lastname;
     protected String fullname;
     protected String idnum;
     protected String course;
+    private ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
 
-    private Scene scene;
-    private Stage stage;
-
-       private ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
-
-
-
-     
+     public StudentRecord(){
+         firstname = "null";
+          middlename = "null";
+           lastname = "null";
+            fullname = "null";
+              idnum = "null";
+               course = "null";
+     }
 
         //constructor functions
          public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour){
@@ -39,60 +30,12 @@ public class StudentRecord extends Input{
                 fullname = funame;
                  idnum = id;
                   course = cour;
-                  subjectGrades = FXCollections.observableArrayList();
-
-
                   }
          public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
-
-             StudentGrade studentGrade = new StudentGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
-
+             StudentGrade studentGrade = new StudentGrade(this.idnum, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
              subjectGrades.add(studentGrade);
 
           }
-        public void createButtonClicked(ActionEvent event) throws IOException{
-
-         //WIll open the grade inputting scene;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
-            Parent root = loader.load();
-            Input inputDataController = loader.getController();
-            inputDataController.initializeInput(studentRecords); // Pass the same studentRecords list
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-                 stage.setTitle("Class Grades");
-        }
-
-        public void homeButtonClicked(ActionEvent event) throws IOException{
-
-         //WIll open the grade inputting scene;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
-            Parent root = loader.load();
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-                stage.setTitle("Student Grade Tracker");
-        }
-
-        public void logoutButtonClicked(ActionEvent event) throws IOException{
-
-            //WIll open the grade inputting scene;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
-                Parent root = loader.load();
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-                stage.setTitle("");
-        }
-
-
-
 
         public String getFirstname() {return firstname;}
         public String getLastname(){return  lastname;}

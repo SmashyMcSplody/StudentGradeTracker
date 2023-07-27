@@ -61,8 +61,8 @@ public class TeacherInterfaceController extends Input {
 
 
     @FXML
-    protected void initialize(ObservableList<StudentRecord> studentRecords) {
-        super.initializeInput(studentRecords);
+    public void initialize(ObservableList<StudentRecord> studentRecords) {
+        super.initialize(studentRecords);
         // Set the data to be displayed in the TableView
         tableView.setItems(studentRecords);
 
@@ -103,7 +103,7 @@ public class TeacherInterfaceController extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
         Parent root = loader.load();
         Input input = loader.getController();
-        input.initializeInput(studentRecords); // Pass the same studentRecords list
+        input.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -116,7 +116,7 @@ public class TeacherInterfaceController extends Input {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
         Parent root = loader.load();
-        StudentGrade subjectGrades = loader.getController();
+        StudentGrades subjectGrades = loader.getController();
         subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

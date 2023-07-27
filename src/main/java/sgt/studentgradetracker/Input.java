@@ -91,9 +91,9 @@ public class Input {
 
     private int studentNumber;
     private int studentIndex = 0;
-    protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();;
+    protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
 
-    public void initializeInput(ObservableList<StudentRecord> studentRecords) {
+    public void initialize(ObservableList<StudentRecord> studentRecords) {
         this.studentRecords = studentRecords;
 
     }
@@ -105,7 +105,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
              Parent root = loader.load();
              Input inputGradesController = loader.getController();
-             inputGradesController.initializeInput(studentRecords); // Pass the same studentRecords list
+             inputGradesController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -120,7 +120,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
              Parent root = loader.load();
              Input inputDataController = loader.getController();
-             inputDataController.initializeInput(studentRecords); // Pass the same studentRecords list
+             inputDataController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -135,6 +135,7 @@ public class Input {
                 invalidInputAlert("Please input the complete data!");
             } else {
                     String subject = subjectField.getText();
+                    String idnum   = idnumgradeField.getText();
 
                     try {
                         float writtenGrade = Float.parseFloat(writtenGradeField.getText());
@@ -145,7 +146,7 @@ public class Input {
                         float examWeight = Float.parseFloat(examWeightField.getText());
 
                         if (findStudentbyIdNum().equals("Exists")) {
-                          studentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                          studentRecords.get(studentNumber).addGrade(subject,writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
                         } else {
                             nullStudentAlert("Student with the given id-number does not exist! Please try again!");
 
@@ -163,7 +164,7 @@ public class Input {
             //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
-            StudentGrade GradesController = loader.getController();
+            StudentGrades GradesController = loader.getController();
             GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
