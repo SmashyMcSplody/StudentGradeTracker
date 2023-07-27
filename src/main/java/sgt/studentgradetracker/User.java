@@ -1,9 +1,15 @@
 package sgt.studentgradetracker;
 
-public class User{
+public class User extends StudentRecord{
     protected String username;
     protected String password;
     protected String role;
+
+    public User(){
+        username = "null";
+        password = "null";
+
+    }
 
     public User(String username, String password, String role) {
         this.username = username;

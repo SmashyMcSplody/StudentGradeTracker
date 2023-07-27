@@ -1,5 +1,6 @@
 package sgt.studentgradetracker;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,13 +13,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController {
+public class LoginController  extends Input {
     @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
 
+    private ArrayList<User> allUsers = new ArrayList<User>();
+
+    public void initialize(ObservableList<StudentRecord> studentRecords){
+        super.initialize(studentRecords);
+    }
     public void loginButtonClicked() {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -27,10 +33,10 @@ public class LoginController {
         User user = validateCredentials(username, password);
 
         if (user != null) {
-            if (user.getRole().equals("student")) {
+            if (user.getRole().equals("Student")) {
                 // Load the student interface
                 loadStudentInterface(user);
-            } else if (user.getRole().equals("teacher")) {
+            } else if (user.getRole().equals("Teacher")) {
                 // Load the teacher interface
                 loadTeacherInterface(user);
             }
@@ -41,11 +47,26 @@ public class LoginController {
     }
 
     private User validateCredentials(String username, String password) {
-        SampleRecordDeclare declare = new SampleRecordDeclare();
-        ArrayList<SampleRecord> studentList = declare.getStudentList();
 
+        Input initialize = new Input();
+        ArrayList<StudentRecord> iniatializer = initialize.getTeacherRecords();
+
+        //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
+        for (StudentRecord record : studentRecords) {
+            ArrayList<User> users = record.getUsers();
+            if (users != null) {
+                allUsers.addAll(users);
+            }
+        }
+
+        for (StudentRecord record : iniatializer) {
+            ArrayList<User> users = record.getUsers();
+            if (users != null) {
+                allUsers.addAll(users);
+            }
+        }
         // Loop through the student list and check each record for the provided username and password
-        for (SampleRecord user : studentList) {
+        for (User user : allUsers) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user; // Return the user (student or teacher) if the credentials match
             }
@@ -54,7 +75,6 @@ public class LoginController {
         // If no matching user is found, return null
         return null;
     }
-
 
 
     private void loadStudentInterface(User user) {
@@ -93,6 +113,8 @@ public class LoginController {
             TeacherInterfaceController teacherInterfaceController = loader.getController();
             teacherInterfaceController.setUser(user);
 
+            TeacherInterfaceController controller = loader.getController();
+            controller.initialize(studentRecords);
             // Create a new stage for the teacher interface
             Stage teacherStage = new Stage();
             teacherStage.setTitle("Student Grade Tracker");

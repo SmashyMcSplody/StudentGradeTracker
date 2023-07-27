@@ -4,6 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+
 public class StudentRecord{
     protected String firstname;
     protected String middlename;
@@ -12,6 +15,7 @@ public class StudentRecord{
     protected String idnum;
     protected String course;
     private ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
+    private ArrayList<User> users = new ArrayList<User>();
 
      public StudentRecord(){
          firstname = "null";
@@ -30,7 +34,20 @@ public class StudentRecord{
                 fullname = funame;
                  idnum = id;
                   course = cour;
-                  }
+                  User user = new User(firstname+"."+lastname, "password", "Student");
+                  users.add(user);
+         }
+
+        public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour, String role){
+         firstname = fname;
+            middlename = mname;
+            lastname = lname;
+            fullname = funame;
+            idnum = id;
+            course = cour;
+            User user = new User(firstname+"."+lastname, "password", role);
+            users.add(user);
+         }
          public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
              StudentGrade studentGrade = new StudentGrade(this.idnum, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
              subjectGrades.add(studentGrade);
@@ -72,7 +89,13 @@ public class StudentRecord{
 
         public ObservableList<StudentGrade> getSubjectGrades() {
 
-        return subjectGrades;
-         }
+            return subjectGrades;
+        }
+
+        public ArrayList<User> getUsers(){
+         return users;
+        }
+
+
 
 }
