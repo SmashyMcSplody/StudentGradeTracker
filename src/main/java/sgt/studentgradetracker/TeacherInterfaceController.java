@@ -46,18 +46,8 @@ public class TeacherInterfaceController extends Input {
     private Parent root;
 
 
-    // Store the User object
-    private User user;
+    // Store the User object    private User user;
 
-    // Method to set the User object
-    public void setUser(User user) {
-        this.user = user;
-        // Update the UI with the user information
-        SampleRecord sampleRecord = (SampleRecord) user;
-        String fullName = sampleRecord.getFname() + " " + sampleRecord.getLname();
-        nameLabel.setText(fullName);
-        idLabel.setText(sampleRecord.getId());
-    }
 
 
     @FXML

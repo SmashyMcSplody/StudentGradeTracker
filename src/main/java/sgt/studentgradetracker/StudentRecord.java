@@ -38,14 +38,14 @@ public class StudentRecord{
                   users.add(user);
          }
 
-        public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour, String role){
+        public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour,String username,String password, String role){
          firstname = fname;
             middlename = mname;
             lastname = lname;
             fullname = funame;
             idnum = id;
             course = cour;
-            User user = new User(firstname+"."+lastname, "password", role);
+            User user = new User(username, password, role);
             users.add(user);
          }
          public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){

@@ -93,12 +93,10 @@ public class Input {
     private int studentIndex = 0;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
     protected ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
-
     public Input(){
-        teacherRecords.add(new StudentRecord("Elisha John", "Dingal", "Aton","Elisha John Dingal Aton", "2022-0956", "1st year BS-CpE","Teacher"));
-        teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE","Teacher"));
 
     }
+
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {
         this.studentRecords = studentRecords;

@@ -24,6 +24,7 @@ public class LoginController  extends Input {
 
     public void initialize(ObservableList<StudentRecord> studentRecords){
         super.initialize(studentRecords);
+
     }
     public void loginButtonClicked() {
         String username = usernameField.getText();
@@ -49,7 +50,9 @@ public class LoginController  extends Input {
     private User validateCredentials(String username, String password) {
 
         Input initialize = new Input();
-        ArrayList<StudentRecord> iniatializer = initialize.getTeacherRecords();
+        initialize.teacherRecords.add(new StudentRecord("Elisha John", "Dingal", "Aton","Elisha John Dingal Aton", "2022-0956", "1st year BS-CpE","elisha.john", "password","Teacher"));
+        initialize.teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE", "nassem.maruhom", "password","Teacher"));
+
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
         for (StudentRecord record : studentRecords) {
@@ -59,7 +62,7 @@ public class LoginController  extends Input {
             }
         }
 
-        for (StudentRecord record : iniatializer) {
+        for (StudentRecord record : initialize.teacherRecords) {
             ArrayList<User> users = record.getUsers();
             if (users != null) {
                 allUsers.addAll(users);
@@ -111,7 +114,6 @@ public class LoginController  extends Input {
 
             // Pass the user object to the teacher interface controller
             TeacherInterfaceController teacherInterfaceController = loader.getController();
-            teacherInterfaceController.setUser(user);
 
             TeacherInterfaceController controller = loader.getController();
             controller.initialize(studentRecords);
