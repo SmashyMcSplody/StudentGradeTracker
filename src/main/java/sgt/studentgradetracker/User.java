@@ -28,6 +28,9 @@ public class User extends StudentRecord{
     public String getRole() {
         return role;
     }
-
+    public String getUserFullname(){
+        String userFullname = getFullname();
+        return userFullname;
+    }
 
 }

@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class StudentGrades extends Input {
@@ -43,8 +44,8 @@ public class StudentGrades extends Input {
     private FilteredList<StudentGrade> filteredSubjects;
 
 
-    public void initialize(ObservableList<StudentRecord> studentRecords) {
-        super.initialize(studentRecords);
+    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
+        super.initialize(studentRecords, teacherRecords);
         for (StudentRecord record : studentRecords) {
             ObservableList<StudentGrade> subjectGrades = record.getSubjectGrades();
             if (subjectGrades != null) {
@@ -101,7 +102,7 @@ public class StudentGrades extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
         Parent root = loader.load();
         Input controller = loader.getController();
-        controller.initialize(studentRecords); // Pass the same studentRecords list
+        controller.initialize(studentRecords, teacherRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -116,7 +117,7 @@ public class StudentGrades extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
         Parent root = loader.load();
         TeacherInterfaceController controller = loader.getController();
-        controller.initialize(studentRecords); // Pass the same studentRecords list
+        controller.initialize(studentRecords, teacherRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -132,7 +133,7 @@ public class StudentGrades extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
         Parent root = loader.load();
         LoginController loginController = loader.getController();
-        loginController.initialize(studentRecords);
+        loginController.initialize(studentRecords, teacherRecords);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

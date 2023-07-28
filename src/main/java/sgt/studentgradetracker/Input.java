@@ -98,11 +98,11 @@ public class Input {
     }
 
 
-    public void initialize(ObservableList<StudentRecord> studentRecords) {
+    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
         this.studentRecords = studentRecords;
+        this.teacherRecords = teacherRecords;
 
     }
-
          @FXML
          public void nextButtonClicked(ActionEvent event) throws IOException{
 
@@ -110,7 +110,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
              Parent root = loader.load();
              Input inputGradesController = loader.getController();
-             inputGradesController.initialize(studentRecords); // Pass the same studentRecords list
+             inputGradesController.initialize(studentRecords, teacherRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -125,7 +125,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
              Parent root = loader.load();
              Input inputDataController = loader.getController();
-             inputDataController.initialize(studentRecords); // Pass the same studentRecords list
+             inputDataController.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -170,7 +170,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
             StudentGrades GradesController = loader.getController();
-            GradesController.initialize(studentRecords); // Pass the same studentRecords list
+            GradesController.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -184,7 +184,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
             Parent root = loader.load();
             TeacherInterfaceController controller = loader.getController();
-            controller.initialize(studentRecords); // Pass the same studentRecords list
+            controller.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
             gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -200,7 +200,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
             Parent root = loader.load();
             LoginController loginController = loader.getController();
-            loginController.initialize(studentRecords);
+            loginController.initialize(studentRecords,teacherRecords);
             gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -239,7 +239,7 @@ public class Input {
                  FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
                  Parent root = loader.load();
                  TeacherInterfaceController controller = loader.getController();
-                 controller.initialize(studentRecords);
+                 controller.initialize(studentRecords, teacherRecords);
 
              }
              //If there's a duplicate record

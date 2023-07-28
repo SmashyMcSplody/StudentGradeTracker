@@ -130,7 +130,7 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idLabel" layoutX="313.0" layoutY="201.0" prefHeight="30.0" prefWidth="619.0" text="Label">
+      <Label fx:id="idLabel" layoutX="313.0" layoutY="201.0" prefHeight="30.0" prefWidth="619.0" text="Professor">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>

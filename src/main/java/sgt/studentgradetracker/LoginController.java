@@ -22,8 +22,8 @@ public class LoginController  extends Input {
 
     private ArrayList<User> allUsers = new ArrayList<User>();
 
-    public void initialize(ObservableList<StudentRecord> studentRecords){
-        super.initialize(studentRecords);
+    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords){
+        super.initialize(studentRecords, teacherRecords);
 
     }
     public void loginButtonClicked() {
@@ -114,9 +114,9 @@ public class LoginController  extends Input {
 
             // Pass the user object to the teacher interface controller
             TeacherInterfaceController teacherInterfaceController = loader.getController();
-
+            teacherInterfaceController.setUser(user);
             TeacherInterfaceController controller = loader.getController();
-            controller.initialize(studentRecords);
+            controller.initialize(studentRecords, teacherRecords);
             // Create a new stage for the teacher interface
             Stage teacherStage = new Stage();
             teacherStage.setTitle("Student Grade Tracker");
