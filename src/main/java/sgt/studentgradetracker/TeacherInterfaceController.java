@@ -71,21 +71,14 @@ public class TeacherInterfaceController extends Input {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
         Parent root = loader.load();
+        LoginController loginController = loader.getController();
+        loginController.initialize(studentRecords);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
         stage.setTitle("");
-    }
-
-    @FXML
-    private void AnalyticButtonClicked() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("example");
-        alert.setHeaderText(null);
-        alert.setContentText("Button Clicked");
-        alert.showAndWait();
     }
 
     @FXML

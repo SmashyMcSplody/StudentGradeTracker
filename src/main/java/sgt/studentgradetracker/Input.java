@@ -192,22 +192,26 @@ public class Input {
             gradeStage.setTitle("Student Grade Tracker");
 
          }
+
         @FXML
         private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
-            //WIll open the grade inputting scene;
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
             Parent root = loader.load();
+            LoginController loginController = loader.getController();
+            loginController.initialize(studentRecords);
             gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
             gradeStage.show();
 
-            gradeStage.setTitle("");
+             gradeStage.setTitle("");
         }
 
 
-        @FXML
+
+    @FXML
         public void toInput() throws IOException {
 
              //Student Info input
