@@ -1,20 +1,22 @@
 package sgt.studentgradetracker;
 
-public class User extends StudentRecord{
-    protected String username;
-    protected String password;
-    protected String role;
+public class User {
+    private String username;
+    private String password;
+    private String role;
+    private StudentRecord studentRecord; // Reference to the associated StudentRecord
 
-    public User(){
+    public User() {
         username = "null";
         password = "null";
-
+        role = "null";
     }
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role, StudentRecord studentRecord) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.studentRecord = studentRecord;
     }
 
     public String getPassword() {
@@ -28,9 +30,20 @@ public class User extends StudentRecord{
     public String getRole() {
         return role;
     }
-    public String getUserFullname(){
-        String userFullname = getFullname();
-        return userFullname;
+
+    public String getUserFullname() {
+        return studentRecord != null ? studentRecord.getFullname() : "Null";
     }
 
+    public String getFullname() {
+        return studentRecord != null ? studentRecord.getFullname() : "Null";
+    }
+
+    public String getIdnum() {
+        return studentRecord != null ? studentRecord.getIdnum() : "Null";
+    }
+
+    public String getCourse() {
+        return studentRecord != null ? studentRecord.getCourse() : "Null";
+    }
 }

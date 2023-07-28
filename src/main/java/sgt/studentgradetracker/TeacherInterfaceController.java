@@ -40,19 +40,17 @@ public class TeacherInterfaceController extends Input {
     private Stage stage;
     private User user;
 
-    public void setUser(User user){
-        this.user = user;
-        String fullname = "Null";
-        for(int i = 0 ; i < teacherRecords.size() ; i++){
-            for(int j = 0 ; j < teacherRecords.get(i).getUsers().size(); j++){
-                if(this.user.getUserFullname().equals(teacherRecords.get(i).getUsers().get(j).getUserFullname())){
-                    fullname = teacherRecords.get(i).getUsers().get(j).getUserFullname();
-                    break;
-                }
-            }
+    public void setUser(User user) {
+        if (user != null) {
+            this.user = user;
+            String fullname = user.getUserFullname();
+            nameLabel.setText(fullname);
+        } else {
+            nameLabel.setText("Null");
         }
-      nameLabel.setText(fullname);
     }
+
+
 
 
 

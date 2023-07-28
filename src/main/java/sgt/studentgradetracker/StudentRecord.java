@@ -27,27 +27,27 @@ public class StudentRecord{
      }
 
         //constructor functions
-         public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour){
-             firstname = fname;
-              middlename = mname;
-               lastname = lname;
-                fullname = funame;
-                 idnum = id;
-                  course = cour;
-                  User user = new User(firstname+"."+lastname, "password", "Student");
-                  users.add(user);
-         }
-
-        public StudentRecord ( String fname, String mname, String lname, String funame, String id, String cour,String username,String password, String role){
-         firstname = fname;
+        public StudentRecord(String fname, String mname, String lname, String funame, String id, String cour) {
+            firstname = fname;
             middlename = mname;
             lastname = lname;
             fullname = funame;
             idnum = id;
             course = cour;
-            User user = new User(username, password, role);
+            User user = new User(firstname + "." + lastname, "password", "Student", this); // Pass 'this' as the associated StudentRecord
             users.add(user);
-         }
+        }
+
+    public StudentRecord(String fname, String mname, String lname, String funame, String id, String cour, String username, String password, String role) {
+        firstname = fname;
+        middlename = mname;
+        lastname = lname;
+        fullname = funame;
+        idnum = id;
+        course = cour;
+        User user = new User(username, password, role, this); // Pass 'this' as the associated StudentRecord
+        users.add(user);
+    }
          public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
              StudentGrade studentGrade = new StudentGrade(this.idnum, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
              subjectGrades.add(studentGrade);
@@ -97,5 +97,7 @@ public class StudentRecord{
         }
 
 
-
+    public String getCourse() {
+        return course;
+    }
 }

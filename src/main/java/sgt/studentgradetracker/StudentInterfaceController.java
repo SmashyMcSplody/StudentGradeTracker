@@ -17,19 +17,19 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class StudentInterfaceController {
+public class StudentInterfaceController extends Input {
     public Button logoutButton;
 
     @FXML
-    private TableView<SampleSubjects> tableView;
+    private TableView<StudentGrade> tableView;
 
     @FXML
-    private TableColumn<SampleSubjects, String> subjectColumn;
+    private TableColumn<StudentGrade, String> subjectColumn;
 
     @FXML
-    private TableColumn<SampleSubjects, String> gradeColumn;
+    private TableColumn<StudentGrade, String> gradeColumn;
 
-    private ObservableList<SampleSubjects> sampleSubjects;
+    private ObservableList<StudentGrade> sampleSubjects;
 
     @FXML
     private Label nameLabel;
@@ -40,45 +40,42 @@ public class StudentInterfaceController {
     @FXML
     private Label courseLabel;
 
-    // Store the User object
+    // Store the User object (You can remove this if not needed anymore)
     private User user;
 
-    // Method to set the User object
+    // Method to set the User object (You can remove this if not needed anymore)
     public void setUser(User user) {
-        this.user = user;
-        // Update the UI with the firstname
-            SampleRecord sampleRecord = (SampleRecord) user;
-            String fullName = sampleRecord.getFname() + " " + sampleRecord.getLname();
-            nameLabel.setText(fullName);
-            idLabel.setText(sampleRecord.getId());
-            courseLabel.setText(sampleRecord.getCourse());
+        if (user != null) {
+            this.user = user;
+            // Assuming you have a 'getFullname' method in StudentRecord
+            String fullname = user.getFullname();
+            nameLabel.setText(fullname);
 
+            // Assuming you have a 'getIdnum' method in StudentRecord
+            String idnum = user.getIdnum();
+            idLabel.setText(idnum);
 
-    }
-
-    @FXML
-    public void initialize() {
-        // Create the list to store the student objects
-        sampleSubjects = FXCollections.observableArrayList();
-
-        // Sample data (you can add more students here)
-        SampleRecordDeclare declare = new SampleRecordDeclare();
-        ArrayList<SampleRecord> studentList = declare.getStudentList();
-
-        // Add the subjects from each student to the sampleSubjects list
-        for (SampleRecord student : studentList) {
-            sampleSubjects.addAll(student.getSubjects());
+            // Assuming you have a 'getCourse' method in StudentRecord
+            String course = user.getCourse();
+            courseLabel.setText(course);
+        } else {
+            nameLabel.setText("Null");
+            idLabel.setText("Null");
+            courseLabel.setText("Null");
         }
-
-        // Set the data to be displayed in the TableView
-        tableView.setItems(sampleSubjects);
-
-        // Define how the columns will get their data from the SampleRecord objects
-        subjectColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        gradeColumn.setCellValueFactory(cellData -> cellData.getValue().gradeProperty());
     }
 
-    
+//    @FXML
+//    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
+//        super.initialize(studentRecords, teacherRecords);
+//        // Set the data to be displayed in the TableView
+//        tableView.setItems(StudentGrade);
+//
+//        // Define how the columns will get their data from the SampleRecord objects
+//        subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
+//        gradeColumn.setCellValueFactory(cellData -> cellData.getValue().finalGradeProperty());
+//    }
+
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
