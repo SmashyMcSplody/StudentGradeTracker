@@ -51,8 +51,8 @@ public class TeacherInterfaceController extends Input {
     }
 
     @FXML
-    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
-        super.initialize(studentRecords, teacherRecords);
+    public void initialize(ObservableList<StudentRecord> studentRecords) {
+        super.initialize(studentRecords);
         // Set the data to be displayed in the TableView
         tableView.setItems(studentRecords);
 
@@ -71,7 +71,7 @@ public class TeacherInterfaceController extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
         Parent root = loader.load();
         LoginController loginController = loader.getController();
-        loginController.initialize(studentRecords, teacherRecords);
+        loginController.initialize(studentRecords);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -85,7 +85,7 @@ public class TeacherInterfaceController extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
         Parent root = loader.load();
         Input input = loader.getController();
-        input.initialize(studentRecords, teacherRecords); // Pass the same studentRecords list
+        input.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -99,7 +99,7 @@ public class TeacherInterfaceController extends Input {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
         Parent root = loader.load();
         StudentGrades subjectGrades = loader.getController();
-        subjectGrades.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
+        subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

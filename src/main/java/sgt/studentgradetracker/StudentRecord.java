@@ -34,7 +34,8 @@ public class StudentRecord{
             fullname = funame;
             idnum = id;
             course = cour;
-            User user = new User(firstname + "." + lastname, "password", "Student", this); // Pass 'this' as the associated StudentRecord
+            String username = firstname + "." + lastname;
+            User user = new User(username.toLowerCase(), "password", "Student", this); // Pass 'this' as the associated StudentRecord
             users.add(user);
         }
 

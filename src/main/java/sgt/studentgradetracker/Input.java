@@ -1,7 +1,5 @@
 package sgt.studentgradetracker;
 
-
-import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,17 +9,10 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-
-
-import javax.security.auth.Subject;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import static javafx.collections.FXCollections.*;
 
 public class Input {
 //declarations
@@ -46,23 +37,11 @@ public class Input {
     private TextField lastnameField;
 
     @FXML
-    private Button logoutButton;
-
-    @FXML
     private TextField middlenameField;
-
-    @FXML
-    private Button nextrecordButton;
-    @FXML
-    private Button inputButton;
 
     private Stage gradeStage;
     private Scene gradeScene;
-    @FXML
-    private Button addgradeButton;
 
-    @FXML
-    private Button backButton;
 
     @FXML
     private TextField examGradeField;
@@ -86,11 +65,7 @@ public class Input {
     private TextField writtenWeightField;
     @FXML
     private TextField idnumgradeField;
-    @FXML
-    private Button classGradesButton;
-
     private int studentNumber;
-    private int studentIndex = 0;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
     protected ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
     public Input(){
@@ -98,10 +73,8 @@ public class Input {
     }
 
 
-    public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
+    public void initialize(ObservableList<StudentRecord> studentRecords) {
         this.studentRecords = studentRecords;
-        this.teacherRecords = teacherRecords;
-
     }
          @FXML
          public void nextButtonClicked(ActionEvent event) throws IOException{
@@ -110,7 +83,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
              Parent root = loader.load();
              Input inputGradesController = loader.getController();
-             inputGradesController.initialize(studentRecords, teacherRecords); // Pass the same studentRecords list
+             inputGradesController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -125,7 +98,7 @@ public class Input {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
              Parent root = loader.load();
              Input inputDataController = loader.getController();
-             inputDataController.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
+             inputDataController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
              gradeStage.setScene(gradeScene);
@@ -170,7 +143,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
             StudentGrades GradesController = loader.getController();
-            GradesController.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
+            GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -184,7 +157,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
             Parent root = loader.load();
             TeacherInterfaceController controller = loader.getController();
-            controller.initialize(studentRecords,teacherRecords); // Pass the same studentRecords list
+            controller.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -200,7 +173,7 @@ public class Input {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
             Parent root = loader.load();
             LoginController loginController = loader.getController();
-            loginController.initialize(studentRecords,teacherRecords);
+            loginController.initialize(studentRecords);
             gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
             gradeStage.setScene(gradeScene);
@@ -233,13 +206,13 @@ public class Input {
                  String username = fname +"." +lname;
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
                  studentRecords.add(student);
-                 successAlert(studentRecords.get(studentIndex).getFullname());
-                 studentIndex++;
+                 successAlert(fullname);
+
 
                  FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
                  Parent root = loader.load();
                  TeacherInterfaceController controller = loader.getController();
-                 controller.initialize(studentRecords, teacherRecords);
+                 controller.initialize(studentRecords);
 
              }
              //If there's a duplicate record
@@ -250,7 +223,6 @@ public class Input {
              }
 
          }
-
         public String duplicateChecker() {
              String duplicateCheck = "No Duplicate";
             if (studentRecords.size() > 0){
@@ -323,16 +295,6 @@ public class Input {
         success.setContentText(feedback);
         success.showAndWait();
     }
-
-    public ObservableList<StudentRecord> getStudentRecords(){
-        return studentRecords;
-    }
-    public ArrayList<StudentRecord> getTeacherRecords(){
-        return teacherRecords;
-    }
-
-
-
 
 
 

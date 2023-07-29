@@ -23,11 +23,11 @@ public class StudentGrade extends StudentRecord{
              examGrade =  new SimpleFloatProperty(0);
                writtenGrade =  new SimpleFloatProperty(0);
                 finalGrade = new SimpleFloatProperty(0);
-                 this.idnum = new SimpleStringProperty(getIdnum());
+                 idnum = new SimpleStringProperty(getIdnum());
             }
 
-         public StudentGrade(String idnum,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){
-           this.idnum = new SimpleStringProperty(idnum);
+         public StudentGrade(String id,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){
+           idnum = new SimpleStringProperty(id);
              this.subject = new SimpleStringProperty(subject);
                quizGrade =  new SimpleFloatProperty(qGrade);
                  examGrade =  new SimpleFloatProperty(wGrade);
@@ -95,7 +95,7 @@ public class StudentGrade extends StudentRecord{
         return subject.get();
     }
 
-    public void setIdnum(String idnum) {
+    public void setSubject(String idnum) {
         this.subject.set(String.valueOf(subject));
     }
     public StringProperty idnumProperty(){ return idnum;}
@@ -103,7 +103,7 @@ public class StudentGrade extends StudentRecord{
         return idnum.get();
     }
 
-    public void setSubject(String idnum) {
+    public void setIdnum(String idnum) {
         this.idnum.set(idnum);
     }
 
