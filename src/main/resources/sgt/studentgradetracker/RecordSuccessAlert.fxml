@@ -20,21 +20,26 @@
             </ImageView>
             <ImageView fitHeight="146.0" fitWidth="153.0" layoutX="127.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@media/Error.png" />
+                  <Image url="@media/Success.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Label alignment="CENTER" layoutX="162.0" layoutY="218.0" prefHeight="20.0" prefWidth="77.0" text="ERROR" textAlignment="CENTER" textFill="#0c1d35">
+      <Label alignment="CENTER" layoutX="150.0" layoutY="218.0" prefHeight="25.0" prefWidth="100.0" text="SUCCESS" textAlignment="CENTER" textFill="#0c1d35">
          <font>
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A student containing the same record already exists!" textAlignment="CENTER" wrappingWidth="247.13671875">
+      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Succesfully created record for:" textAlignment="CENTER" wrappingWidth="247.13671875">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Text>
-      <Button layoutX="106.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="190.0" stylesheets="@css/alertsbutton.css" text="Try Again" />
+      <Button layoutX="106.0" layoutY="330.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="190.0" stylesheets="@css/alertsbutton.css" text="Continue" />
+      <Label alignment="CENTER" layoutX="6.0" layoutY="284.0" prefHeight="25.0" prefWidth="391.0" text="Label" textAlignment="CENTER" textFill="#0c1d35">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
