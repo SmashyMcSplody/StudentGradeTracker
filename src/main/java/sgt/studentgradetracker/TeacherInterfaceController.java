@@ -46,13 +46,9 @@ public class TeacherInterfaceController extends Input {
             String fullname = user.getUserFullname();
             nameLabel.setText(fullname);
         } else {
-            nameLabel.setText("Null");
+            nameLabel.setText("Nassem L. Maruhom");
         }
     }
-
-
-
-
 
     @FXML
     public void initialize(ObservableList<StudentRecord> studentRecords, ArrayList<StudentRecord> teacherRecords) {
@@ -67,7 +63,6 @@ public class TeacherInterfaceController extends Input {
         idColumn.setCellValueFactory(cellData -> cellData.getValue().getidProperty());
         courseColumn.setCellValueFactory(cellData -> cellData.getValue().getcourseProperty());
     }
-
 
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
@@ -112,5 +107,4 @@ public class TeacherInterfaceController extends Input {
 
         stage.setTitle("Class Grades");
     }
-
 }

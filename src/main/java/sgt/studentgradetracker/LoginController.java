@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class LoginController  extends Input {
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
 
@@ -50,9 +49,7 @@ public class LoginController  extends Input {
     private User validateCredentials(String username, String password) {
 
         Input initialize = new Input();
-        initialize.teacherRecords.add(new StudentRecord("Elisha John", "Dingal", "Aton","Elisha John Dingal Aton", "2022-0956", "1st year BS-CpE","elisha.john", "password","Teacher"));
         initialize.teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE", "nassem.maruhom", "password","Teacher"));
-
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
         for (StudentRecord record : studentRecords) {

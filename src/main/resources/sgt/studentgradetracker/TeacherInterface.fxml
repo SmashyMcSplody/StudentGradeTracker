@@ -125,7 +125,7 @@
             <Image url="@media/user.png" />
          </image>
       </ImageView>
-      <Label fx:id="nameLabel" layoutX="314.0" layoutY="169.0" prefHeight="30.0" prefWidth="619.0" text="Label">
+      <Label fx:id="nameLabel" layoutX="314.0" layoutY="169.0" prefHeight="30.0" prefWidth="619.0" text="Nassem L. Maruhom">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
