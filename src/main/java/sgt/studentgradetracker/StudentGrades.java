@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class StudentGrades extends Input {
@@ -98,7 +99,7 @@ public class StudentGrades extends Input {
     @FXML
     public void createButtonClicked(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
         Parent root = loader.load();
         Input controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list

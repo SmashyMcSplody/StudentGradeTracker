@@ -181,7 +181,7 @@ public class Input{
                     if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
                         Alerts alert = new Alerts();
                         alert.successGradeAlert(idnumGrades);
-                        studentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                        studentRecords.get(studentNumber).addGrade(idnumGrades, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
 
                     } else {
                         Alerts alert = new Alerts();

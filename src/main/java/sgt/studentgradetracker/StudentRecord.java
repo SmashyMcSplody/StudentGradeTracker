@@ -49,8 +49,8 @@ public class StudentRecord{
         User user = new User(username, password, role, this); // Pass 'this' as the associated StudentRecord
         users.add(user);
     }
-         public void addGrade(String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
-             StudentGrade studentGrade = new StudentGrade(this.idnum, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
+         public void addGrade(String idnum, String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeightage){
+             StudentGrade studentGrade = new StudentGrade(idnum, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeightage);
              subjectGrades.add(studentGrade);
 
           }
