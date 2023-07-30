@@ -17,41 +17,6 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgt.studentgradetracker.StudentInterfaceController">
    <children>
-      <VBox prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;">
-         <children>
-            <Pane prefHeight="293.0" prefWidth="300.0">
-               <children>
-                  <ImageView fitHeight="65.0" fitWidth="98.0" layoutX="26.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@media/newLogoHoodie-03.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="WHITE" layoutX="121.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grade Tracker">
-                     <font>
-                        <Font name="Century Gothic Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Text fill="WHITE" layoutX="122.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
-                     <font>
-                        <Font name="Century Gothic Bold" size="12.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
-            <Pane prefHeight="213.0" prefWidth="300.0" />
-            <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="87.0" prefWidth="299.0" style="-fx-background-color: Transparent;" stylesheets="@css/buttonStyle.css" text="Logout" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </VBox>
       <VBox layoutX="300.0" layoutY="270.0" prefHeight="427.0" prefWidth="700.0">
          <children>
             <Pane layoutX="10.0" prefHeight="424.0" prefWidth="700.0">
@@ -106,5 +71,44 @@
             </ImageView>
          </graphic>
       </Label>
+      <VBox prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0c1d35;">
+         <children>
+            <Pane prefHeight="260.0" prefWidth="300.0">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="98.0" layoutX="26.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@media/newLogoHoodie-03.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="121.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grade Tracker">
+                     <font>
+                        <Font name="Century Gothic Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="122.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
+                     <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="131.0" prefWidth="300.0" />
+            <Pane prefHeight="131.0" prefWidth="300.0" />
+            <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

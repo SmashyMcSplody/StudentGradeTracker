@@ -23,6 +23,18 @@ public class Alerts {
     public Alerts(){
 
     }
+    public void loginErrorAlert()throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginErrorAlert.fxml"));
+        Parent root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error!");
+        stage.setResizable(false);
+
+    }
+
 
     public void invalidInputAlert()throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidGradeAlert.fxml"));

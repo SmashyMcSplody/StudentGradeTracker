@@ -46,8 +46,8 @@ public class LoginController  extends Input {
         } else {
             // Show error message for invalid credentials
             Alerts alert = new Alerts();
-            alert.
-            showError();
+            alert.loginErrorAlert();
+
         }
     }
 
@@ -134,17 +134,6 @@ public class LoginController  extends Input {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showError() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginErrorAlert.fxml"));
-        Parent root = loader.load();
-        stage = new Stage();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Error");
-        stage.setResizable(false);
     }
 
 }

@@ -109,7 +109,7 @@ public class Input{
             //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
-            Alerts.StudentGrades GradesController = loader.getController();
+            StudentGrades GradesController = loader.getController();
             GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
