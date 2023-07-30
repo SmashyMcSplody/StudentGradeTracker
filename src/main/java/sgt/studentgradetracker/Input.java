@@ -167,18 +167,28 @@ public class Input{
                 float quizWeightage = Float.parseFloat(quizWeightField.getText());
                 float examGrade = Float.parseFloat(examGradeField.getText());
                 float examWeight = Float.parseFloat(examWeightField.getText());
-
-                if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
+                if(writtenWeightage + quizWeightage + examWeight != 100){
                     Alerts alert = new Alerts();
-                    alert.successGradeAlert(idnumGrades);
-                    studentRecords.get(studentNumber).addGrade(subject,writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
-
-                } else {
+                    alert.invalidWeightageAlert();
+                }
+                if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
                     Alerts alert = new Alerts();
-                    alert.nullStudentAlert();
+                    alert.invalidGradeAlert();
 
                 }
+                else {
 
+                    if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
+                        Alerts alert = new Alerts();
+                        alert.successGradeAlert(idnumGrades);
+                        studentRecords.get(studentNumber).addGrade(subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+
+                    } else {
+                        Alerts alert = new Alerts();
+                        alert.nullStudentAlert();
+
+                    }
+                }
             }   catch (NumberFormatException | IOException e) {
                 Alerts alert = new Alerts();
                 alert.invalidInputAlert();

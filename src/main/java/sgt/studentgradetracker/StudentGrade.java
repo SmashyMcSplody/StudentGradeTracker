@@ -16,23 +16,13 @@ public class StudentGrade extends StudentRecord{
     protected StringProperty idnum;
 
 
-
-         public StudentGrade(String blank){
-           this.subject = new SimpleStringProperty(blank);
-            quizGrade = new SimpleFloatProperty(0);
-             examGrade =  new SimpleFloatProperty(0);
-               writtenGrade =  new SimpleFloatProperty(0);
-                finalGrade = new SimpleFloatProperty(0);
-                 idnum = new SimpleStringProperty(getIdnum());
-            }
-
          public StudentGrade(String id,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){
-           idnum = new SimpleStringProperty(id);
-             this.subject = new SimpleStringProperty(subject);
-               quizGrade =  new SimpleFloatProperty(qGrade);
-                 examGrade =  new SimpleFloatProperty(wGrade);
-                  writtenGrade =  new SimpleFloatProperty(wGrade);
-                   finalGrade = new SimpleFloatProperty((qGrade * (qWeightage/100)) + (eGrade * (eWeightage/100)) + (wGrade * (wWeightage/100)));
+           idnum = new SimpleStringProperty(id.toUpperCase());
+            this.subject = new SimpleStringProperty(subject);
+             writtenGrade =  new SimpleFloatProperty(wGrade* (wWeightage/100));
+               quizGrade =  new SimpleFloatProperty(qGrade * (qWeightage/100));
+                 examGrade =  new SimpleFloatProperty(eGrade* (eWeightage/100));
+                   finalGrade = new SimpleFloatProperty((wGrade* (wWeightage/100)) +(qGrade * (qWeightage/100)) + (eGrade* (eWeightage/100)));
             }
     // Getters and setters for subject, quizGrade, examGrade, writtenGrade, and finalGrade
     // Subject getter and setter

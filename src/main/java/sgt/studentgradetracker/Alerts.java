@@ -37,6 +37,18 @@ public class Alerts {
 
 
     public void invalidInputAlert()throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidInputGradeAlert.fxml"));
+        Parent root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error!");
+        stage.setResizable(false);
+
+
+    }
+    public void invalidGradeAlert()throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidGradeAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
@@ -84,15 +96,25 @@ public class Alerts {
         stage.setResizable(false);
 
     }
+    public void invalidWeightageAlert() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidWeightage.fxml"));
+        Parent root = loader.load();
+
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error!");
+        stage.setResizable(false);
+    }
     public void successRecordAlert(String fullname)throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordSuccessAlert.fxml"));
         Parent root = loader.load();
 
-        // Get the controller from the loader
+
         Alerts controller = loader.getController();
 
-        // Pass the fullname to the controller
-        controller.setFullname(fullname);
+        controller.setFullname(fullname.toUpperCase());
 
         stage = new Stage();
         scene = new Scene(root);
@@ -105,10 +127,9 @@ public class Alerts {
     public void successGradeAlert(String idnum)throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GradeSuccessAlert.fxml"));
         Parent root = loader.load();
-        // Get the controller from the loader
+
         Alerts controller = loader.getController();
 
-        // Pass the fullname to the controller
         controller.setIdnum(idnum);
 
         stage = new Stage();

@@ -28,24 +28,24 @@ public class StudentRecord{
 
         //constructor functions
         public StudentRecord(String fname, String mname, String lname, String funame, String id, String cour) {
-            firstname = fname;
-            middlename = mname;
-            lastname = lname;
-            fullname = funame;
+            firstname = fname.toUpperCase();
+            middlename = mname.toUpperCase();
+            lastname = lname.toUpperCase();
+            fullname = funame.toUpperCase();
             idnum = id;
-            course = cour;
+            course = cour.toUpperCase();
             String username = firstname + "." + lastname;
             User user = new User(username.toLowerCase(), "password", "Student", this); // Pass 'this' as the associated StudentRecord
             users.add(user);
         }
 
     public StudentRecord(String fname, String mname, String lname, String funame, String id, String cour, String username, String password, String role) {
-        firstname = fname;
-        middlename = mname;
-        lastname = lname;
-        fullname = funame;
+        firstname = fname.toUpperCase();
+        middlename = mname.toUpperCase();
+        lastname = lname.toUpperCase();
+        fullname = funame.toUpperCase();
         idnum = id;
-        course = cour;
+        course = cour.toUpperCase();
         User user = new User(username, password, role, this); // Pass 'this' as the associated StudentRecord
         users.add(user);
     }

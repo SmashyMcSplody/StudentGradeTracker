@@ -31,7 +31,7 @@
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid grades! Must be equal or below 100%!" textAlignment="CENTER" wrappingWidth="247.13671875">
+      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Weightage! Must be a total of 100%" textAlignment="CENTER" wrappingWidth="247.13671875">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
