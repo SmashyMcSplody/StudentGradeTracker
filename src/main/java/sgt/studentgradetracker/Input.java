@@ -8,13 +8,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Input {
+public class Input{
 //declarations
 
     protected String fname;
@@ -68,9 +67,6 @@ public class Input {
     private int studentNumber;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
     protected ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
-    public Input(){
-
-    }
 
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {
@@ -108,41 +104,12 @@ public class Input {
          }
 
         @FXML
-        public void addButtonClicked(ActionEvent event) {
-            if (subjectField.getText().equals("")) {
-                invalidInputAlert("Please input the complete data!");
-            } else {
-                    String subject = subjectField.getText();
-                    String idnum   = idnumgradeField.getText();
-
-                    try {
-                        float writtenGrade = Float.parseFloat(writtenGradeField.getText());
-                        float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
-                        float quizGrade = Float.parseFloat(quizGradeField.getText());
-                        float quizWeightage = Float.parseFloat(quizWeightField.getText());
-                        float examGrade = Float.parseFloat(examGradeField.getText());
-                        float examWeight = Float.parseFloat(examWeightField.getText());
-
-                        if (findStudentbyIdNum().equals("Exists")) {
-                          studentRecords.get(studentNumber).addGrade(subject,writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
-                        } else {
-                            nullStudentAlert("Student with the given id-number does not exist! Please try again!");
-
-                        }
-
-                    }   catch (NumberFormatException e) {
-                        invalidInputAlert("Wrongly inputted a character in the grades and weightage! Please input numeric characters!");
-
-                    }
-                }
-        }
-        @FXML
         public void classGradesButtonClicked(ActionEvent event)throws IOException{
 
             //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
             Parent root = loader.load();
-            StudentGrades GradesController = loader.getController();
+            Alerts.StudentGrades GradesController = loader.getController();
             GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);
@@ -182,6 +149,44 @@ public class Input {
              gradeStage.setTitle("");
         }
 
+    @FXML
+    public void addButtonClicked(ActionEvent event) throws IOException {
+        String subject = subjectField.getText();
+        String idnumGrades  = idnumgradeField.getText();
+        if (subject.equals("") || idnumGrades.equals("")) {
+            Alerts alert = new Alerts();
+            alert.incompleteInputAlert();
+        }
+        else{
+
+
+            try {
+                float writtenGrade = Float.parseFloat(writtenGradeField.getText());
+                float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
+                float quizGrade = Float.parseFloat(quizGradeField.getText());
+                float quizWeightage = Float.parseFloat(quizWeightField.getText());
+                float examGrade = Float.parseFloat(examGradeField.getText());
+                float examWeight = Float.parseFloat(examWeightField.getText());
+
+                if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
+                    Alerts alert = new Alerts();
+                    alert.successGradeAlert(idnumGrades);
+                    studentRecords.get(studentNumber).addGrade(subject,writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+
+                } else {
+                    Alerts alert = new Alerts();
+                    alert.nullStudentAlert();
+
+                }
+
+            }   catch (NumberFormatException | IOException e) {
+                Alerts alert = new Alerts();
+                alert.invalidInputAlert();
+
+            }
+        }
+    }
+
 
 
     @FXML
@@ -203,10 +208,11 @@ public class Input {
              if(duplicateChecker().equals("No Duplicate")){
                  //Storing the student info to array
                  ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
-                 String username = fname +"." +lname;
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
+                 Alerts alert = new Alerts();
+                 alert.successRecordAlert(fullname);
                  studentRecords.add(student);
-                 successAlert(fullname);
+
 
 
                  FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
@@ -218,7 +224,8 @@ public class Input {
              //If there's a duplicate record
              else{
                  //Will open the errorStage fxml file
-                 duplicateAlert();
+                 Alerts alert = new Alerts();
+                 alert.duplicateAlert();
 
              }
 
@@ -227,7 +234,7 @@ public class Input {
              String duplicateCheck = "No Duplicate";
             if (studentRecords.size() > 0){
                 for (int k = 0; k < studentRecords.size(); k++) {
-                    if (studentRecords.get(k).getFirstname().equals(fname) && studentRecords.get(k).getLastname().equals(lname)) {
+                    if ((studentRecords.get(k).getFirstname().equals(fname) && studentRecords.get(k).getLastname().equals(lname)) || studentRecords.get(k).getIdnum().equals(idnum)) {
                         duplicateCheck = "Duplicate Found";
                     } else {
                         duplicateCheck = "No Duplicate";
@@ -241,60 +248,18 @@ public class Input {
              return duplicateCheck;
         }
 
-        public void invalidInputAlert(String message){
-             Alert invalidInput = new Alert(Alert.AlertType.ERROR);
-             invalidInput.setTitle("Invalid input");
-             invalidInput.setHeaderText("Invalid character input");
-             invalidInput.setContentText(message);
-             invalidInput.showAndWait();
-        }
-        public void nullStudentAlert(String message){
-            Alert invalidInput = new Alert(Alert.AlertType.ERROR);
-            invalidInput.setTitle("No Student found!");
-            invalidInput.setHeaderText("Error! No Student found!");
-            invalidInput.setContentText(message);
-            invalidInput.showAndWait();
 
-         }
-        public String findStudentbyIdNum(){
+        public String findStudentbyIdNum(String idnumGrades){
             String studentChecker = "Does not Exist";
-            String idnumGrade = idnumgradeField.getText();
             for(int i = 0; i < studentRecords.size(); i++){
-                if (idnumGrade.equals(studentRecords.get(i).getIdnum())) {
+                if (idnumGrades.equals(studentRecords.get(i).getIdnum())) {
                     studentChecker = "Exists";
-                    studentNumber = i;
 
                     break;
                 }
             }
-            feedbackAlert(studentChecker);
             return studentChecker;
         }
-
-
-    public void duplicateAlert() throws IOException {
-        // Will open the grade inputting scene;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DuplicateAlert.fxml"));
-        Parent root = loader.load();
-        gradeStage = new Stage();
-        gradeScene = new Scene(root);
-        gradeStage.setScene(gradeScene);
-        gradeStage.show();
-        gradeStage.setTitle("Error!");
-        gradeStage.setResizable(false);
-    }
-    public void successAlert(String fullname){
-        Alert success = new Alert(Alert.AlertType.INFORMATION);
-        success.setTitle("Sucess!");
-        success.setContentText("Sucessfully Created a student record for" + fullname);
-        success.showAndWait();
-    }
-    public void feedbackAlert(String feedback){
-        Alert success = new Alert(Alert.AlertType.INFORMATION);
-        success.setTitle("Success!");
-        success.setContentText(feedback);
-        success.showAndWait();
-    }
 
 
 

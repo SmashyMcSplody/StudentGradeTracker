@@ -30,13 +30,13 @@
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Succesfully created record for:" textAlignment="CENTER" wrappingWidth="247.13671875">
+      <Text fill="#0c1d35" layoutX="77.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Succesfully created grades for:" textAlignment="CENTER" wrappingWidth="247.13671875">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Text>
       <Button layoutX="106.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleCloseButtonClicked" prefHeight="25.0" prefWidth="190.0" stylesheets="@css/alertsbutton.css" text="Continue" />
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="6.0" layoutY="284.0" prefHeight="25.0" prefWidth="391.0" text="Label" textAlignment="CENTER" textFill="#0c1d35">
+      <Label fx:id="idnumLabel" alignment="CENTER" layoutX="6.0" layoutY="284.0" prefHeight="25.0" prefWidth="391.0" text="Label" textAlignment="CENTER" textFill="#0c1d35">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>

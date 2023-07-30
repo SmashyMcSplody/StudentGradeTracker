@@ -3,6 +3,7 @@ package sgt.studentgradetracker;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,6 +19,8 @@ public class LoginController  extends Input {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
+    private Stage stage;
+    private Scene scene;
 
     private ArrayList<User> allUsers = new ArrayList<User>();
 
@@ -25,7 +28,7 @@ public class LoginController  extends Input {
         super.initialize(studentRecords);
 
     }
-    public void loginButtonClicked() {
+    public void loginButtonClicked() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -42,7 +45,9 @@ public class LoginController  extends Input {
             }
         } else {
             // Show error message for invalid credentials
-            showError("Invalid username or password!");
+            Alerts alert = new Alerts();
+            alert.
+            showError();
         }
     }
 
@@ -131,11 +136,15 @@ public class LoginController  extends Input {
         }
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void showError() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginErrorAlert.fxml"));
+        Parent root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error");
+        stage.setResizable(false);
     }
+
 }

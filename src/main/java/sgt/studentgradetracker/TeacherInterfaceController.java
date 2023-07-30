@@ -1,6 +1,5 @@
 package sgt.studentgradetracker;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class TeacherInterfaceController extends Input {
     @FXML
@@ -98,7 +96,7 @@ public class TeacherInterfaceController extends Input {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
         Parent root = loader.load();
-        StudentGrades subjectGrades = loader.getController();
+        Alerts.StudentGrades subjectGrades = loader.getController();
         subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

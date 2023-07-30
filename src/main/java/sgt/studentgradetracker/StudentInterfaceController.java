@@ -56,7 +56,7 @@ public class StudentInterfaceController extends Input {
     private ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
     private FilteredList<StudentGrade> filteredSubjects;
     private User userLogin;
-    
+
 
     // Method to set the User object (You can remove this if not needed anymore)
     public void setUser(User user) {
