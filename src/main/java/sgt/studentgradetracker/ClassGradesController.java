@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class StudentGrades extends Input {
