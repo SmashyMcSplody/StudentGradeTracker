@@ -171,7 +171,7 @@ public class Input{
                     Alerts alert = new Alerts();
                     alert.invalidWeightageAlert();
                 }
-                if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
+                else if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
                     Alerts alert = new Alerts();
                     alert.invalidGradeAlert();
 

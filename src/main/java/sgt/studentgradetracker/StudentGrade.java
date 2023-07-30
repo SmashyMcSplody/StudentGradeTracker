@@ -19,10 +19,10 @@ public class StudentGrade extends StudentRecord{
          public StudentGrade(String id,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){
            idnum = new SimpleStringProperty(id.toUpperCase());
             this.subject = new SimpleStringProperty(subject);
-             writtenGrade =  new SimpleFloatProperty(wGrade* (wWeightage/100));
-               quizGrade =  new SimpleFloatProperty(qGrade * (qWeightage/100));
-                 examGrade =  new SimpleFloatProperty(eGrade* (eWeightage/100));
-                   finalGrade = new SimpleFloatProperty((wGrade* (wWeightage/100)) +(qGrade * (qWeightage/100)) + (eGrade* (eWeightage/100)));
+             writtenGrade =  new SimpleFloatProperty(Math.round(wGrade* (wWeightage/100)));
+               quizGrade =  new SimpleFloatProperty(Math.round(qGrade * (qWeightage/100)));
+                 examGrade =  new SimpleFloatProperty(Math.round(eGrade* (eWeightage/100)));
+                   finalGrade = new SimpleFloatProperty(Math.round((wGrade* (wWeightage/100)) +(qGrade * (qWeightage/100)) + (eGrade* (eWeightage/100))));
             }
     // Getters and setters for subject, quizGrade, examGrade, writtenGrade, and finalGrade
     // Subject getter and setter
