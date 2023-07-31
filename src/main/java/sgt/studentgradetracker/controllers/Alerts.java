@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ public class Alerts {
 
     }
     public void loginErrorAlert()throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginErrorAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/LoginErrorAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
         scene = new Scene(root);
@@ -37,7 +37,7 @@ public class Alerts {
 
 
     public void invalidInputAlert()throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidInputGradeAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidInputGradeAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
         scene = new Scene(root);
@@ -49,7 +49,7 @@ public class Alerts {
 
     }
     public void invalidGradeAlert()throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidGradeAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidGradeAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
         scene = new Scene(root);
@@ -61,7 +61,7 @@ public class Alerts {
 
     }
     public void incompleteInputAlert()throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("IncompleteInputAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/IncompleteInputAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
         scene = new Scene(root);
@@ -73,7 +73,7 @@ public class Alerts {
     }
 
     public void nullStudentAlert()throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidIDAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidIDAlert.fxml"));
         Parent root = loader.load();
         stage = new Stage();
         scene = new Scene(root);
@@ -85,7 +85,7 @@ public class Alerts {
     }
     public void duplicateAlert() throws IOException {
         // Will open the grade inputting scene;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DuplicateAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/DuplicateAlert.fxml"));
         Parent root = loader.load();
 
         stage = new Stage();
@@ -97,7 +97,7 @@ public class Alerts {
 
     }
     public void invalidWeightageAlert() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InvalidWeightage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidWeightage.fxml"));
         Parent root = loader.load();
 
         stage = new Stage();
@@ -108,7 +108,7 @@ public class Alerts {
         stage.setResizable(false);
     }
     public void successRecordAlert(String fullname)throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecordSuccessAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/RecordSuccessAlert.fxml"));
         Parent root = loader.load();
 
 
@@ -125,7 +125,7 @@ public class Alerts {
 
     }
     public void successGradeAlert(String idnum)throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GradeSuccessAlert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/GradeSuccessAlert.fxml"));
         Parent root = loader.load();
 
         Alerts controller = loader.getController();

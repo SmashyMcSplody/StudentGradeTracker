@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.StudentRecord;
+import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
-public class TeacherInterfaceController extends Input {
+public class TeacherInterfaceController extends RecordInputController {
     @FXML
     public Button logoutButton;
 
@@ -66,7 +68,7 @@ public class TeacherInterfaceController extends Input {
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/Login-Scene.fxml"));
         Parent root = loader.load();
         LoginController loginController = loader.getController();
         loginController.initialize(studentRecords);
@@ -80,9 +82,9 @@ public class TeacherInterfaceController extends Input {
 
     @FXML
     private void createButtonClicked(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InputData-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputData-Scene.fxml"));
         Parent root = loader.load();
-        Input input = loader.getController();
+        RecordInputController input = loader.getController();
         input.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -94,9 +96,9 @@ public class TeacherInterfaceController extends Input {
     @FXML
     private void classGradesButtonAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClassGrades-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/ClassGrades-Scene.fxml"));
         Parent root = loader.load();
-        StudentGrades subjectGrades = loader.getController();
+        GradeInputController subjectGrades = loader.getController();
         subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

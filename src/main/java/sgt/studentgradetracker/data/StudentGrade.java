@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.data;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;

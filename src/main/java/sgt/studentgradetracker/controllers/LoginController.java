@@ -1,20 +1,20 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.StudentRecord;
+import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController  extends Input {
+public class LoginController  extends RecordInputController {
     @FXML
     private TextField usernameField;
     @FXML
@@ -53,7 +53,7 @@ public class LoginController  extends Input {
 
     private User validateCredentials(String username, String password) {
 
-        Input initialize = new Input();
+        RecordInputController initialize = new RecordInputController();
         initialize.teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE", "nassem.maruhom", "password","Teacher"));
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
@@ -85,7 +85,7 @@ public class LoginController  extends Input {
     private void loadStudentInterface(User user) {
         try {
             // Load the student interface FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentInterface.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/StudentInterface.fxml"));
             Parent root = loader.load();
 
             // Pass the user object to the student interface controller
@@ -112,7 +112,7 @@ public class LoginController  extends Input {
     private void loadTeacherInterface(User user) {
         try {
             // Load the teacher interface FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/TeacherInterface.fxml"));
             Parent root = loader.load();
 
             // Pass the user object to the teacher interface controller

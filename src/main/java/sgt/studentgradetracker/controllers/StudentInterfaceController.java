@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.controllers;
 
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.collections.FXCollections;
@@ -12,12 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.StudentGrade;
+import sgt.studentgradetracker.data.StudentRecord;
+import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-public class StudentInterfaceController extends Input {
+public class StudentInterfaceController extends RecordInputController {
     @FXML
     private Label courseLabel;
 
@@ -138,7 +139,7 @@ public class StudentInterfaceController extends Input {
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/Login-Scene.fxml"));
         Parent root = loader.load();
         LoginController loginController = loader.getController();
         loginController.initialize(studentRecords);

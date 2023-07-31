@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.data;
 
 public class User {
     private String username;

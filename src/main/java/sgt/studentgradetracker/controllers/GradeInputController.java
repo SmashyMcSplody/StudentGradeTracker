@@ -1,4 +1,4 @@
-package sgt.studentgradetracker;
+package sgt.studentgradetracker.controllers;
 
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.collections.FXCollections;
@@ -12,11 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.StudentGrade;
+import sgt.studentgradetracker.data.StudentRecord;
+
 import java.io.IOException;
-import java.util.ArrayList;
 
 
-public class StudentGrades extends Input {
+public class GradeInputController extends RecordInputController {
 
     @FXML
     private TextField searchGrades;
@@ -99,9 +101,9 @@ public class StudentGrades extends Input {
     @FXML
     public void createButtonClicked(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InputGrade-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputGrade-Scene.fxml"));
         Parent root = loader.load();
-        Input controller = loader.getController();
+        RecordInputController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -114,7 +116,7 @@ public class StudentGrades extends Input {
     @FXML
     public void homeButtonClicked(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TeacherInterface.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/TeacherInterface.fxml"));
         Parent root = loader.load();
         TeacherInterfaceController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list
@@ -130,7 +132,7 @@ public class StudentGrades extends Input {
     private void handleLogoutButtonAction(ActionEvent event) throws IOException {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/Login-Scene.fxml"));
         Parent root = loader.load();
         LoginController loginController = loader.getController();
         loginController.initialize(studentRecords);
