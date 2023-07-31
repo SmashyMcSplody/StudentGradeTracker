@@ -112,7 +112,7 @@ public class RecordInputController {
             //WIll open the grade inputting scene;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/ClassGrades-Scene.fxml"));
             Parent root = loader.load();
-            GradeInputController GradesController = loader.getController();
+            GradeViewController GradesController = loader.getController();
             GradesController.initialize(studentRecords); // Pass the same studentRecords list
             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             gradeScene = new Scene(root);

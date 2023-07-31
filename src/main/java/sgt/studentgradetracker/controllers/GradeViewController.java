@@ -18,7 +18,7 @@ import sgt.studentgradetracker.data.StudentRecord;
 import java.io.IOException;
 
 
-public class GradeInputController extends RecordInputController {
+public class GradeViewController extends RecordInputController {
 
     @FXML
     private TextField searchGrades;

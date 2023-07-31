@@ -98,7 +98,7 @@ public class TeacherInterfaceController extends RecordInputController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/ClassGrades-Scene.fxml"));
         Parent root = loader.load();
-        GradeInputController subjectGrades = loader.getController();
+        GradeViewController subjectGrades = loader.getController();
         subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
