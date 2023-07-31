@@ -18,7 +18,7 @@ public class StudentGrade extends StudentRecord{
 
          public StudentGrade(String id,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){
            idnum = new SimpleStringProperty(id.toUpperCase());
-            this.subject = new SimpleStringProperty(subject);
+            this.subject = new SimpleStringProperty(subject.toUpperCase());
              writtenGrade =  new SimpleFloatProperty(Math.round(wGrade* (wWeightage/100)));
                quizGrade =  new SimpleFloatProperty(Math.round(qGrade * (qWeightage/100)));
                  examGrade =  new SimpleFloatProperty(Math.round(eGrade* (eWeightage/100)));

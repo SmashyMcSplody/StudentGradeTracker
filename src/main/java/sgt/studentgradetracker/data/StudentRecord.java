@@ -57,6 +57,7 @@ public class StudentRecord{
 
         public String getFirstname() {return firstname;}
         public String getLastname(){return  lastname;}
+        public String getMiddlename() {return middlename;}
         public String getIdnum(){ return idnum; }
         public  String getFullname(){ return fullname;}
 

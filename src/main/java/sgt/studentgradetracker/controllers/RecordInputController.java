@@ -152,35 +152,33 @@ public class RecordInputController {
              gradeStage.setTitle("");
         }
 
-    @FXML
-    public void addButtonClicked(ActionEvent event) throws IOException {
-        String subject = subjectField.getText();
-        String idnumGrades  = idnumgradeField.getText();
-        if (subject.equals("") || idnumGrades.equals("")) {
-            Alerts alert = new Alerts();
-            alert.incompleteInputAlert();
-        }
-        else{
+        @FXML
+        public void addButtonClicked(ActionEvent event) throws IOException {
+            String subject = subjectField.getText();
+            String idnumGrades  = idnumgradeField.getText();
+                if (subject.equals("") || idnumGrades.equals("")) {
+                Alerts alert = new Alerts();
+                alert.incompleteInputAlert();
+            }
+               else{
 
-
-            try {
+                 try {
                 float writtenGrade = Float.parseFloat(writtenGradeField.getText());
                 float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
                 float quizGrade = Float.parseFloat(quizGradeField.getText());
                 float quizWeightage = Float.parseFloat(quizWeightField.getText());
                 float examGrade = Float.parseFloat(examGradeField.getText());
                 float examWeight = Float.parseFloat(examWeightField.getText());
+
                 if(writtenWeightage + quizWeightage + examWeight != 100){
                     Alerts alert = new Alerts();
-                    alert.invalidWeightageAlert();
-                }
+                    alert.invalidWeightageAlert();}
+
                 else if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
                     Alerts alert = new Alerts();
-                    alert.invalidGradeAlert();
+                    alert.invalidGradeAlert();}
 
-                }
                 else {
-
                     if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
                         Alerts alert = new Alerts();
                         alert.successGradeAlert(idnumGrades);
@@ -194,15 +192,14 @@ public class RecordInputController {
                 }
             }   catch (NumberFormatException | IOException e) {
                 Alerts alert = new Alerts();
-                alert.invalidInputAlert();
+                alert.invalidInputAlert();}
 
-            }
-        }
-    }
-
+                }
+         }
 
 
-    @FXML
+
+         @FXML
         public void toInput() throws IOException {
 
              //Student Info input
@@ -218,7 +215,7 @@ public class RecordInputController {
 
               //Code will then check
              //If no duplicate then it will store the student data
-             if(duplicateChecker().equals("No Duplicate")){
+             if(duplicateChecker(fname, lname, mname, idnum).equals("No Duplicate")){
                  //Storing the student info to array
                  ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
@@ -243,31 +240,27 @@ public class RecordInputController {
              }
 
          }
-        public String duplicateChecker() {
-             String duplicateCheck = "No Duplicate";
-            if (studentRecords.size() > 0){
-                for (int k = 0; k < studentRecords.size(); k++) {
-                    if ((studentRecords.get(k).getFirstname().equals(fname) && studentRecords.get(k).getLastname().equals(lname)) || studentRecords.get(k).getIdnum().equals(idnum)) {
-                        duplicateCheck = "Duplicate Found";
-                    } else {
-                        duplicateCheck = "No Duplicate";
-                    }
+
+
+         public String duplicateChecker(String fname, String lname, String mname, String idnum) {
+            String duplicateCheck = "No Duplicate";
+             for(StudentRecord records : studentRecords){
+                 if(idnum.equals(records.getIdnum())){
+                     duplicateCheck = "Duplicate Found";
+                 }
+                if(fname.toUpperCase().equals(records.getFirstname()) && lname.toUpperCase().equals(records.getLastname()) && mname.toUpperCase().equals(records.getMiddlename())){
+                   duplicateCheck = "Duplicate Found";
+                   break;
                 }
-            }
-            else{
-                duplicateCheck = "No Duplicate";
-            }
-
+             }
              return duplicateCheck;
-        }
+         }
 
-
-        public String findStudentbyIdNum(String idnumGrades){
+         public String findStudentbyIdNum(String idnumGrades){
             String studentChecker = "Does not Exist";
-            for(int i = 0; i < studentRecords.size(); i++){
-                if (idnumGrades.equals(studentRecords.get(i).getIdnum())) {
+            for(StudentRecord records : studentRecords){
+                if (idnumGrades.equals(records.getIdnum())){
                     studentChecker = "Exists";
-
                     break;
                 }
             }
