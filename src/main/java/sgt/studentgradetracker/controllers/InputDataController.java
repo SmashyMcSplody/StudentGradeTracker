@@ -258,11 +258,13 @@ public class InputDataController {
 
          public String findStudentbyIdNum(String idnumGrades){
             String studentChecker = "Does not Exist";
+            studentNumber = 0;
             for(StudentRecord records : studentRecords){
                 if (idnumGrades.equals(records.getIdnum())){
                     studentChecker = "Exists";
                     break;
                 }
+                studentNumber++;
             }
             return studentChecker;
         }
