@@ -19,8 +19,7 @@ public class LoginController  extends InputDataController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    private Stage stage;
-    private Scene scene;
+
 
     private ArrayList<User> allUsers = new ArrayList<User>();
 

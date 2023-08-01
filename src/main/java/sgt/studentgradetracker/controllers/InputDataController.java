@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import sgt.studentgradetracker.data.StudentGrade;
 import sgt.studentgradetracker.data.StudentRecord;
 
 import java.io.IOException;
@@ -153,7 +152,7 @@ public class InputDataController {
         }
 
         @FXML
-        public void addButtonClicked(ActionEvent event) throws IOException {
+        public void addButtonClicked() throws IOException {
             String subject = subjectField.getText();
             String idnumGrades  = idnumgradeField.getText();
                 if (subject.equals("") || idnumGrades.equals("")) {
@@ -217,7 +216,6 @@ public class InputDataController {
              //If no duplicate then it will store the student data
              if(duplicateChecker(fname, lname, mname, idnum).equals("No Duplicate")){
                  //Storing the student info to array
-                 ObservableList<StudentGrade> subjectGrades = FXCollections.observableArrayList();
                  StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
                  Alerts alert = new Alerts();
                  alert.successRecordAlert(fullname);

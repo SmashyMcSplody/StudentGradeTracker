@@ -35,7 +35,6 @@ public class Alerts {
 
     }
 
-
     public void invalidInputAlert()throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidInputGradeAlert.fxml"));
         Parent root = loader.load();
@@ -46,8 +45,8 @@ public class Alerts {
         stage.setTitle("Error!");
         stage.setResizable(false);
 
-
     }
+
     public void invalidGradeAlert()throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidGradeAlert.fxml"));
         Parent root = loader.load();
@@ -57,9 +56,8 @@ public class Alerts {
         stage.show();
         stage.setTitle("Error!");
         stage.setResizable(false);
-
-
     }
+
     public void incompleteInputAlert()throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/IncompleteInputAlert.fxml"));
         Parent root = loader.load();
@@ -113,7 +111,6 @@ public class Alerts {
 
 
         Alerts controller = loader.getController();
-
         controller.setFullname(fullname.toUpperCase());
 
         stage = new Stage();
@@ -129,7 +126,6 @@ public class Alerts {
         Parent root = loader.load();
 
         Alerts controller = loader.getController();
-
         controller.setIdnum(idnum);
 
         stage = new Stage();
@@ -143,13 +139,9 @@ public class Alerts {
 
     @FXML
     private void handleCloseButtonClicked(ActionEvent event) {
-        // Get the reference to the Stage
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Close the Stage (window)
         stage.close();
     }
-
 
     public void setFullname(String fullname) {
         nameLabel.setText(fullname);

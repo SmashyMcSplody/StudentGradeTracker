@@ -15,8 +15,6 @@ import sgt.studentgradetracker.data.User;
 import java.io.IOException;
 
 public class TeacherInterfaceController extends InputDataController {
-    @FXML
-    public Button logoutButton;
 
     @FXML
     private TableView<StudentRecord> tableView;
