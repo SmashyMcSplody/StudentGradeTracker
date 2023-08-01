@@ -16,7 +16,7 @@ import sgt.studentgradetracker.data.StudentRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RecordInputController {
+public class InputDataController {
 //declarations
 
     protected String fname;
@@ -81,7 +81,7 @@ public class RecordInputController {
              //WIll open the grade inputting scene;
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputGrade-Scene.fxml"));
              Parent root = loader.load();
-             RecordInputController inputGradesController = loader.getController();
+             InputDataController inputGradesController = loader.getController();
              inputGradesController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);
@@ -96,7 +96,7 @@ public class RecordInputController {
              //WIll open the grade inputting scene;
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputData-Scene.fxml"));
              Parent root = loader.load();
-             RecordInputController inputDataController = loader.getController();
+             InputDataController inputDataController = loader.getController();
              inputDataController.initialize(studentRecords); // Pass the same studentRecords list
              gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
              gradeScene = new Scene(root);

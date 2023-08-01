@@ -18,7 +18,7 @@ import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
-public class StudentInterfaceController extends RecordInputController {
+public class StudentInterfaceController extends InputDataController {
     @FXML
     private Label courseLabel;
 

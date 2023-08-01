@@ -14,7 +14,7 @@ import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
-public class TeacherInterfaceController extends RecordInputController {
+public class TeacherInterfaceController extends InputDataController {
     @FXML
     public Button logoutButton;
 
@@ -84,7 +84,7 @@ public class TeacherInterfaceController extends RecordInputController {
     private void createButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputData-Scene.fxml"));
         Parent root = loader.load();
-        RecordInputController input = loader.getController();
+        InputDataController input = loader.getController();
         input.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

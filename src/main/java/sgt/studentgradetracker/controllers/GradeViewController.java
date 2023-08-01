@@ -18,7 +18,7 @@ import sgt.studentgradetracker.data.StudentRecord;
 import java.io.IOException;
 
 
-public class GradeViewController extends RecordInputController {
+public class GradeViewController extends InputDataController {
 
     @FXML
     private TextField searchGrades;
@@ -103,7 +103,7 @@ public class GradeViewController extends RecordInputController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputGrade-Scene.fxml"));
         Parent root = loader.load();
-        RecordInputController controller = loader.getController();
+        InputDataController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -14,7 +14,7 @@ import sgt.studentgradetracker.data.User;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController  extends RecordInputController {
+public class LoginController  extends InputDataController {
     @FXML
     private TextField usernameField;
     @FXML
@@ -53,7 +53,7 @@ public class LoginController  extends RecordInputController {
 
     private User validateCredentials(String username, String password) {
 
-        RecordInputController initialize = new RecordInputController();
+        InputDataController initialize = new InputDataController();
         initialize.teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE", "nassem.maruhom", "password","Teacher"));
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
