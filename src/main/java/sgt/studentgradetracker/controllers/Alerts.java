@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Alerts {
+public class Alerts{
     @FXML
     private Label nameLabel;
     @FXML

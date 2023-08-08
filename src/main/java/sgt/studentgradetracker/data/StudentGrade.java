@@ -13,7 +13,6 @@ public class StudentGrade extends StudentRecord{
     protected FloatProperty examGrade;
     protected FloatProperty writtenGrade;
     protected FloatProperty finalGrade;
-    protected StringProperty idnum;
 
 
          public StudentGrade(String id,String subject, float wGrade, float wWeightage, float qGrade, float qWeightage,  float eGrade, float eWeightage){

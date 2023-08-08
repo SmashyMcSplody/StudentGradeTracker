@@ -53,7 +53,6 @@ public class TeacherInterfaceController extends InputDataController {
         super.initialize(studentRecords);
         // Set the data to be displayed in the TableView
         tableView.setItems(studentRecords);
-
         // Define how the columns will get their data from the SampleRecord objects
         fnameColumn.setCellValueFactory(cellData -> cellData.getValue().getfnameProperty());
         mnameColumn.setCellValueFactory(cellData -> cellData.getValue().getmnameProperty());

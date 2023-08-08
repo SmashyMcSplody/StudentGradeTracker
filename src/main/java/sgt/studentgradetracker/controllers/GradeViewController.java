@@ -101,7 +101,7 @@ public class GradeViewController extends InputDataController {
     @FXML
     public void createButtonClicked(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputGrade-Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InputData-Scene.fxml"));
         Parent root = loader.load();
         InputDataController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list

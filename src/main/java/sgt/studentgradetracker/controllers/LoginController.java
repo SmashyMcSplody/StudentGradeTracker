@@ -69,6 +69,7 @@ public class LoginController  extends InputDataController {
                 allUsers.addAll(users);
             }
         }
+
         // Loop through the student list and check each record for the provided username and password
         for (User user : allUsers) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {

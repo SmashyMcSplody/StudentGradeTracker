@@ -1,6 +1,4 @@
 package sgt.studentgradetracker.controllers;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,20 +8,12 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import sgt.studentgradetracker.data.DataManager;
 import sgt.studentgradetracker.data.StudentRecord;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class InputDataController {
+public class InputDataController extends DataManager {
 //declarations
-
-    protected String fname;
-    protected String lname;
-    protected String mname;
-    protected String fullname;
-    protected String idnum;
-    protected String course;
 
     @FXML
     private TextField courseField;
@@ -66,9 +56,7 @@ public class InputDataController {
     private TextField writtenWeightField;
     @FXML
     private TextField idnumgradeField;
-    private int studentNumber;
-    protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
-    protected ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
+
 
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {
@@ -150,126 +138,95 @@ public class InputDataController {
 
              gradeStage.setTitle("");
         }
-
-        @FXML
-        public void addButtonClicked() throws IOException {
-            String subject = subjectField.getText();
-            String idnumGrades  = idnumgradeField.getText();
-                if (subject.equals("") || idnumGrades.equals("")) {
-                Alerts alert = new Alerts();
-                alert.incompleteInputAlert();
-            }
-               else{
-
-                 try {
-                float writtenGrade = Float.parseFloat(writtenGradeField.getText());
-                float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
-                float quizGrade = Float.parseFloat(quizGradeField.getText());
-                float quizWeightage = Float.parseFloat(quizWeightField.getText());
-                float examGrade = Float.parseFloat(examGradeField.getText());
-                float examWeight = Float.parseFloat(examWeightField.getText());
-
-                if(writtenWeightage + quizWeightage + examWeight != 100){
-                    Alerts alert = new Alerts();
-                    alert.invalidWeightageAlert();}
-
-                else if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
-                    Alerts alert = new Alerts();
-                    alert.invalidGradeAlert();}
-
-                else {
-                    if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
-                        Alerts alert = new Alerts();
-                        alert.successGradeAlert(idnumGrades);
-                        studentRecords.get(studentNumber).addGrade(idnumGrades, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
-
-                    } else {
-                        Alerts alert = new Alerts();
-                        alert.nullStudentAlert();
-
-                    }
-                }
-            }   catch (NumberFormatException | IOException e) {
-                Alerts alert = new Alerts();
-                alert.invalidInputAlert();}
-
-                }
-         }
-
-
-
-         @FXML
-        public void toInput() throws IOException {
+            @FXML
+            public void inputButtonClicked() throws IOException {
 
              //Student Info input
-             fname = firstnameField.getText();
-              mname = middlenameField.getText();
-               lname = lastnameField.getText();
-                fullname = fname +" " +mname +" " +lname;
+            fname = firstnameField.getText();
+            mname = middlenameField.getText();
+            lname = lastnameField.getText();
+            fullname = fname +" " +mname +" " +lname;
 
-                //Student Data input
-                  idnum = idnumField.getText();
-                    course = courseField.getText();
-
-
-              //Code will then check
-             //If no duplicate then it will store the student data
-             if(duplicateChecker(fname, lname, mname, idnum).equals("No Duplicate")){
-                 //Storing the student info to array
-                 StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
-                 Alerts alert = new Alerts();
-                 alert.successRecordAlert(fullname);
-                 studentRecords.add(student);
+            //Student Data input
+            idnum = idnumField.getText();
+            course = courseField.getText();
 
 
+            //Code will then check
+            //If no duplicate then it will store the student data
+                if(duplicateChecker(fname, lname, mname, idnum).equals("No Duplicate")){
+                    //Storing the student info to array
 
-                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/TeacherInterface.fxml"));
-                 Parent root = loader.load();
-                 TeacherInterfaceController controller = loader.getController();
-                 controller.initialize(studentRecords);
+                    StudentRecord student = new StudentRecord(fname, mname, lname, fullname, idnum, course);
+                    addStudent(student);
+                    Alerts alert = new Alerts();
+                    alert.successRecordAlert(fullname);
+                 }
 
-             }
-             //If there's a duplicate record
-             else{
+                //If there's a duplicate record
+                 else{
                  //Will open the errorStage fxml file
                  Alerts alert = new Alerts();
                  alert.duplicateAlert();
-
-             }
-
-         }
-
-
-         public String duplicateChecker(String fname, String lname, String mname, String idnum) {
-            String duplicateCheck = "No Duplicate";
-             for(StudentRecord records : studentRecords){
-                 if(idnum.equals(records.getIdnum())){
-                     duplicateCheck = "Duplicate Found";
-                 }
-                if(fname.toUpperCase().equals(records.getFirstname()) && lname.toUpperCase().equals(records.getLastname()) && mname.toUpperCase().equals(records.getMiddlename())){
-                   duplicateCheck = "Duplicate Found";
-                   break;
                 }
-             }
-             return duplicateCheck;
-         }
-
-         public String findStudentbyIdNum(String idnumGrades){
-            String studentChecker = "Does not Exist";
-            studentNumber = 0;
-            for(StudentRecord records : studentRecords){
-                if (idnumGrades.equals(records.getIdnum())){
-                    studentChecker = "Exists";
-                    break;
-                }
-                studentNumber++;
             }
-            return studentChecker;
-        }
+
+
+            @FXML
+            public void addButtonClicked() throws IOException {
+                String subject = subjectField.getText();
+                String idnumGrades  = idnumgradeField.getText();
+                    if (subject.equals("") || idnumGrades.equals("")) {
+                    Alerts alert = new Alerts();
+                    alert.incompleteInputAlert();
+                    }
+                    else{
+                         try {
+                            float writtenGrade = Float.parseFloat(writtenGradeField.getText());
+                            float writtenWeightage = Float.parseFloat(writtenWeightField.getText());
+                            float quizGrade = Float.parseFloat(quizGradeField.getText());
+                            float quizWeightage = Float.parseFloat(quizWeightField.getText());
+                            float examGrade = Float.parseFloat(examGradeField.getText());
+                            float examWeight = Float.parseFloat(examWeightField.getText());
+
+                            if(writtenWeightage + quizWeightage + examWeight != 100){
+                                 Alerts alert = new Alerts();
+                                 alert.invalidWeightageAlert();
+                            }
+
+                            else if(writtenGrade > 100 || quizGrade > 100 || examGrade > 100){
+                                Alerts alert = new Alerts();
+                                alert.invalidGradeAlert();
+                            }
+
+                            else {
+                                if (findStudentbyIdNum(idnumGrades).equals("Exists")) {
+                                    Alerts alert = new Alerts();
+                                    alert.successGradeAlert(idnumGrades);
+                                    addGrades(idnumGrades, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
+                                }
+                                else {
+                                    Alerts alert = new Alerts();
+                                    alert.nullStudentAlert();
+                                 }
+                            }
+
+                         } catch (NumberFormatException | IOException e) {
+                             Alerts alert = new Alerts();
+                             alert.invalidInputAlert();
+                         }
+                    }
+            }
 
 
 
-    }
+
+
+
+
+
+
+}
 
 
 
