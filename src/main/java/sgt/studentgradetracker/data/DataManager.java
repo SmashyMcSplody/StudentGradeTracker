@@ -13,6 +13,7 @@ public class DataManager {
     protected String fullname;
     protected String idnum;
     protected String course;
+    protected User user;
 
     private int studentNumber;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();

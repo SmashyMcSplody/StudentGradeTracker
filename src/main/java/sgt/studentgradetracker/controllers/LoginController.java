@@ -19,6 +19,7 @@ public class LoginController  extends InputDataController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
+    private User user;
 
 
     private ArrayList<User> allUsers = new ArrayList<User>();
@@ -32,7 +33,7 @@ public class LoginController  extends InputDataController {
         String password = passwordField.getText();
 
         // Validate credentials
-        User user = validateCredentials(username, password);
+        user = validateCredentials(username, password);
 
         if (user != null) {
             if (user.getRole().equals("Student")) {
@@ -54,6 +55,7 @@ public class LoginController  extends InputDataController {
 
         InputDataController initialize = new InputDataController();
         initialize.teacherRecords.add(new StudentRecord("Nassem", "Layatan", "Nassem", "Nassem L. Maruhom", "2022-0690", "1st year BS-CpE", "nassem.maruhom", "password","Teacher"));
+        initialize.teacherRecords.add(new StudentRecord("Elisha John", "Dingal", "Aton", "Elisha John D. ATon", "2022-6969", "1st year BS-CpE", "elisha.aton", "password","Teacher"));
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
         for (StudentRecord record : studentRecords) {

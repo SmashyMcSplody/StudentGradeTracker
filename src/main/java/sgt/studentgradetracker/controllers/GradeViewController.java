@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sgt.studentgradetracker.data.StudentGrade;
 import sgt.studentgradetracker.data.StudentRecord;
+import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
@@ -44,6 +45,9 @@ public class GradeViewController extends InputDataController {
 
     private ObservableList allStudentGrades = FXCollections.observableArrayList();
     private FilteredList<StudentGrade> filteredSubjects;
+    private User user;
+
+    public void storeUser(User user){this.user = user;}
 
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {
@@ -105,6 +109,7 @@ public class GradeViewController extends InputDataController {
         Parent root = loader.load();
         InputDataController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list
+        controller.storeUser(user);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -120,6 +125,7 @@ public class GradeViewController extends InputDataController {
         Parent root = loader.load();
         TeacherInterfaceController controller = loader.getController();
         controller.initialize(studentRecords); // Pass the same studentRecords list
+        controller.setUser(user);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

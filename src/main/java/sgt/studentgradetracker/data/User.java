@@ -1,6 +1,8 @@
 package sgt.studentgradetracker.data;
 
-public class User {
+import sgt.studentgradetracker.controllers.InputDataController;
+
+public class User{
     private String username;
     private String password;
     private String role;

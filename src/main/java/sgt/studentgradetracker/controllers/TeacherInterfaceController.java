@@ -38,13 +38,13 @@ public class TeacherInterfaceController extends InputDataController {
     private Stage stage;
     private User user;
 
-    public void setUser(User user) {
-        if (user != null) {
-            this.user = user;
+    public void setUser(User userLogin) {
+        if (userLogin != null) {
+            user = userLogin;
             String fullname = user.getUserFullname();
             nameLabel.setText(fullname);
         } else {
-            nameLabel.setText("Nassem L. Maruhom");
+            nameLabel.setText("Null");
         }
     }
 
@@ -83,6 +83,7 @@ public class TeacherInterfaceController extends InputDataController {
         Parent root = loader.load();
         InputDataController input = loader.getController();
         input.initialize(studentRecords); // Pass the same studentRecords list
+        input.storeUser(this.user);
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
