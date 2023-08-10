@@ -2,6 +2,7 @@ package sgt.studentgradetracker.data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -17,6 +18,10 @@ public class DataManager {
     protected String course;
 
     protected User user;
+    protected ArrayList<User> allUsers = new ArrayList<User>();
+    protected ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
+    protected FilteredList<StudentGrade> filteredSubjects = new FilteredList<>(allStudentGrades, p -> true);
+
 
     private int studentNumber;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
@@ -66,7 +71,7 @@ public class DataManager {
     }
 
     public ArrayList<User> allStudentUsers(){
-        ArrayList<User> allUsers = new ArrayList<User>();
+        allUsers = new ArrayList<User>();
         for (StudentRecord record : studentRecords) {
             ArrayList<User> users = record.getUsers();
             if (users != null) {

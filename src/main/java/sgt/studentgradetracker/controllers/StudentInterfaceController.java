@@ -49,8 +49,7 @@ public class StudentInterfaceController extends DataManager {
     @FXML
     private TableColumn<StudentGrade, Float> writtenColumn;
 
-    private ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
-    private FilteredList<StudentGrade> filteredSubjects;
+
 
 
     // Method to set the User object (You can remove this if not needed anymore)
@@ -89,7 +88,6 @@ public class StudentInterfaceController extends DataManager {
                 }
             }
 
-            filteredSubjects = new FilteredList<>(allStudentGrades, p -> true);
         studentGradeTable.setItems(filteredSubjects);
 
         subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());

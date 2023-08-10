@@ -19,6 +19,7 @@ public class Alerts{
 
     private Stage stage;
     private Scene scene;
+
     public Alerts(){
         //null
     }

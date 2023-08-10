@@ -1,9 +1,7 @@
 package sgt.studentgradetracker.controllers;
 
 import javafx.beans.property.SimpleFloatProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,9 +37,6 @@ public class GradeViewController extends DataManager {
 
     @FXML
     private TableColumn<StudentGrade, Float> finalGradeColumn;
-
-    private ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
-    private FilteredList<StudentGrade> filteredSubjects = new FilteredList<>(allStudentGrades, p -> true);
 
     public void storeUser(User userLogin){user = userLogin;}
 

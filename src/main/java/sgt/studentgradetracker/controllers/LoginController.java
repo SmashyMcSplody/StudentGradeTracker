@@ -21,7 +21,7 @@ public class LoginController  extends DataManager {
     @FXML
     private PasswordField passwordField;
 
-    private ArrayList<User> allUsers = new ArrayList<User>();
+
 
     public void initialize(ObservableList<StudentRecord> studentRecords){
         super.initialize(studentRecords);
