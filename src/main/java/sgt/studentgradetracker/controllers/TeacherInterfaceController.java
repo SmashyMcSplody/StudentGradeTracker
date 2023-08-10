@@ -95,7 +95,8 @@ public class TeacherInterfaceController extends DataManager {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/ClassGrades-Scene.fxml"));
         Parent root = loader.load();
         GradeViewController subjectGrades = loader.getController();
-        subjectGrades.initialize(studentRecords); // Pass the same studentRecords list
+        subjectGrades.initialize(studentRecords);// Pass the same studentRecords list
+        subjectGrades.storeUser(user);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

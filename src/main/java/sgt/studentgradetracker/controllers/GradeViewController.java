@@ -38,7 +38,7 @@ public class GradeViewController extends DataManager {
     @FXML
     private TableColumn<StudentGrade, Float> finalGradeColumn;
 
-    public void storeUser(User userLogin){user = userLogin;}
+    public void storeUser(User user){this.user = user;}
 
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {

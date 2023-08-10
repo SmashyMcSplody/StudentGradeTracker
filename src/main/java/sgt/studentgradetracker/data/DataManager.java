@@ -26,6 +26,7 @@ public class DataManager {
     private int studentNumber;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
     public   ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
+
     protected Scene scene;
     protected Stage stage;
 
