@@ -12,13 +12,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.DataManager;
 import sgt.studentgradetracker.data.StudentGrade;
 import sgt.studentgradetracker.data.StudentRecord;
 import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
-public class StudentInterfaceController extends InputDataController {
+public class StudentInterfaceController extends DataManager {
     @FXML
     private Label courseLabel;
 
@@ -50,23 +51,22 @@ public class StudentInterfaceController extends InputDataController {
 
     private ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
     private FilteredList<StudentGrade> filteredSubjects;
-    private User userLogin;
 
 
     // Method to set the User object (You can remove this if not needed anymore)
-    public void setUser(User user) {
-        if (user != null) {
-            userLogin = user;
+    public void setUser(User userLogin) {
+        if (userLogin != null) {
+            user = userLogin;
             // Assuming you have a 'getFullname' method in StudentRecord
-            String fullname = userLogin.getFullname();
+            String fullname = user.getFullname();
             nameLabel.setText(fullname);
 
             // Assuming you have a 'getIdnum' method in StudentRecord
-            String idnum = userLogin.getIdnum();
+            String idnum = user.getIdnum();
             idLabel.setText(idnum);
 
             // Assuming you have a 'getCourse' method in StudentRecord
-            String course = userLogin.getCourse();
+            String course = user.getCourse();
             courseLabel.setText(course);
 
         } else {
@@ -82,7 +82,7 @@ public class StudentInterfaceController extends InputDataController {
                 ObservableList<StudentGrade> subjectGrades = record.getSubjectGrades();
                 if (subjectGrades != null) {
                 for(StudentGrade subject : subjectGrades){
-                    if(subject.getIdnum().equals(userLogin.getIdnum())){
+                    if(subject.getIdnum().equals(user.getIdnum())){
                         allStudentGrades.add(subject);
                          }
                      }
@@ -143,5 +143,21 @@ public class StudentInterfaceController extends InputDataController {
         stage.show();
 
         stage.setTitle("");
+    }
+    @FXML
+    private void changePassButtonClicked(ActionEvent event) throws IOException {
+        //WIll open the grade inputting scene;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/StudentSettings.fxml"));
+        Parent root = loader.load();
+        SettingController settingsController = loader.getController();
+        settingsController.initialize(studentRecords); // Pass the same studentRecords list
+        settingsController.setUser(user);
+        stage = (Stage)((MenuItem)event.getSource()).getParentPopup().getOwnerWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Input Grades");
+
+
     }
 }

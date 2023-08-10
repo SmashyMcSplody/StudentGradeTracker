@@ -114,7 +114,7 @@
       </VBox>
       <MenuButton layoutX="912.0" layoutY="13.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="48.0" stylesheets="@css/menuButtonStyle.css">
          <items>
-            <MenuItem mnemonicParsing="false" text="Change Password" />
+            <MenuItem mnemonicParsing="false" onAction="#changePassButtonClicked" text="Change Password" />
          </items>
          <graphic>
             <ImageView fitHeight="44.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">

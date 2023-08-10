@@ -9,12 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.DataManager;
 import sgt.studentgradetracker.data.StudentRecord;
 import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 
-public class TeacherInterfaceController extends InputDataController {
+public class TeacherInterfaceController extends DataManager {
 
     @FXML
     private TableView<StudentRecord> tableView;
@@ -34,9 +35,6 @@ public class TeacherInterfaceController extends InputDataController {
     private TableColumn<StudentRecord, String> courseColumn;
 
 
-    private Scene scene;
-    private Stage stage;
-    private User user;
 
     public void setUser(User userLogin) {
         if (userLogin != null) {

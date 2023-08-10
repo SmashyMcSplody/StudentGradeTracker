@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.DataManager;
 import sgt.studentgradetracker.data.StudentGrade;
 import sgt.studentgradetracker.data.StudentRecord;
 import sgt.studentgradetracker.data.User;
@@ -19,7 +20,7 @@ import sgt.studentgradetracker.data.User;
 import java.io.IOException;
 
 
-public class GradeViewController extends InputDataController {
+public class GradeViewController extends DataManager {
 
     @FXML
     private TextField searchGrades;
@@ -29,7 +30,6 @@ public class GradeViewController extends InputDataController {
     private TableColumn<StudentGrade, String> subjectColumn;
     @FXML
     private TableColumn<StudentGrade, String> idColumn;
-
     @FXML
     private TableColumn<StudentGrade, Float> writtenGradeColumn;
     @FXML
@@ -40,14 +40,10 @@ public class GradeViewController extends InputDataController {
     @FXML
     private TableColumn<StudentGrade, Float> finalGradeColumn;
 
-    private Stage stage;
-    private Scene scene;
+    private ObservableList<StudentGrade> allStudentGrades = FXCollections.observableArrayList();
+    private FilteredList<StudentGrade> filteredSubjects = new FilteredList<>(allStudentGrades, p -> true);
 
-    private ObservableList allStudentGrades = FXCollections.observableArrayList();
-    private FilteredList<StudentGrade> filteredSubjects;
-    private User user;
-
-    public void storeUser(User user){this.user = user;}
+    public void storeUser(User userLogin){user = userLogin;}
 
 
     public void initialize(ObservableList<StudentRecord> studentRecords) {
@@ -59,11 +55,7 @@ public class GradeViewController extends InputDataController {
             }
         }
 
-        filteredSubjects = new FilteredList<>(allStudentGrades, p -> true);
-
-
         subjectGradeTable.setItems(filteredSubjects);
-
         subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idnumProperty());
         writtenGradeColumn.setCellValueFactory(cellData -> {

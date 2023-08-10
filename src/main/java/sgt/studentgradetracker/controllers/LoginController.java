@@ -8,19 +8,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sgt.studentgradetracker.data.DataManager;
 import sgt.studentgradetracker.data.StudentRecord;
 import sgt.studentgradetracker.data.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController  extends InputDataController {
+public class LoginController  extends DataManager {
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    private User user;
-
 
     private ArrayList<User> allUsers = new ArrayList<User>();
 
@@ -58,13 +57,7 @@ public class LoginController  extends InputDataController {
         initialize.teacherRecords.add(new StudentRecord("Elisha John", "Dingal", "Aton", "Elisha John D. ATon", "2022-6969", "1st year BS-CpE", "elisha.aton", "password","Teacher"));
 
         //checks all the StudentRecord inside the List studentRecords and the users List inside the StudentRecord object.
-        for (StudentRecord record : studentRecords) {
-            ArrayList<User> users = record.getUsers();
-            if (users != null) {
-                allUsers.addAll(users);
-            }
-        }
-
+        allUsers = allStudentUsers();
         for (StudentRecord record : initialize.teacherRecords) {
             ArrayList<User> users = record.getUsers();
             if (users != null) {

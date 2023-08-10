@@ -14,7 +14,6 @@ import sgt.studentgradetracker.data.StudentRecord;
 import java.io.IOException;
 import sgt.studentgradetracker.data.User;
 public class InputDataController extends DataManager {
-//declarations
 
     @FXML
     private TextField courseField;
@@ -30,7 +29,6 @@ public class InputDataController extends DataManager {
 
     @FXML
     private TextField middlenameField;
-
 
     @FXML
     private TextField examGradeField;
@@ -54,18 +52,13 @@ public class InputDataController extends DataManager {
     private TextField writtenWeightField;
     @FXML
     private TextField idnumgradeField;
-
-    private Stage gradeStage;
-    private Scene gradeScene;
+    
 
 
 
 
-
-         public void initialize(ObservableList<StudentRecord> studentRecords) {
-        this.studentRecords = studentRecords;
-    }
-         public void storeUser(User user){this.user = user;}
+         public void initialize(ObservableList<StudentRecord> studentRecords) {super.initialize(studentRecords);}
+         public void storeUser(User userLogin){user = userLogin;}
          @FXML
          public void nextButtonClicked(ActionEvent event) throws IOException{
 
@@ -75,11 +68,11 @@ public class InputDataController extends DataManager {
              InputDataController inputGradesController = loader.getController();
              inputGradesController.initialize(studentRecords); // Pass the same studentRecords list
              inputGradesController.storeUser(user);
-             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-             gradeScene = new Scene(root);
-             gradeStage.setScene(gradeScene);
-             gradeStage.show();
-             gradeStage.setTitle("Input Grades");
+             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+             scene = new Scene(root);
+             stage.setScene(scene);
+             stage.show();
+             stage.setTitle("Input Grades");
 
          }
          @FXML
@@ -90,12 +83,12 @@ public class InputDataController extends DataManager {
              Parent root = loader.load();
              InputDataController inputDataController = loader.getController();
              inputDataController.initialize(studentRecords); // Pass the same studentRecords list
-             gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-             gradeScene = new Scene(root);
-             gradeStage.setScene(gradeScene);
-             gradeStage.show();
+             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+             scene = new Scene(root);
+             stage.setScene(scene);
+             stage.show();
 
-             gradeStage.setTitle("Input Student Data");
+             stage.setTitle("Input Student Data");
          }
 
         @FXML
@@ -107,12 +100,12 @@ public class InputDataController extends DataManager {
             GradeViewController GradesController = loader.getController();
             GradesController.initialize(studentRecords); // Pass the same studentRecords list
             GradesController.storeUser(user);
-            gradeStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            gradeScene = new Scene(root);
-            gradeStage.setScene(gradeScene);
-            gradeStage.show();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-            gradeStage.setTitle("Class Grades");
+            stage.setTitle("Class Grades");
         }
         @FXML
         public void homeButtonClicked(ActionEvent event)throws IOException{
@@ -122,11 +115,11 @@ public class InputDataController extends DataManager {
             TeacherInterfaceController controller = loader.getController();
             controller.initialize(studentRecords); // Pass the same studentRecords list
             controller.setUser(user);
-            gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            gradeScene = new Scene(root);
-            gradeStage.setScene(gradeScene);
-            gradeStage.show();
-            gradeStage.setTitle("Student Grade Tracker");
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            stage.setTitle("Student Grade Tracker");
 
          }
 
@@ -138,12 +131,12 @@ public class InputDataController extends DataManager {
             Parent root = loader.load();
             LoginController loginController = loader.getController();
             loginController.initialize(studentRecords);
-            gradeStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            gradeScene = new Scene(root);
-            gradeStage.setScene(gradeScene);
-            gradeStage.show();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-             gradeStage.setTitle("");
+             stage.setTitle("");
         }
             @FXML
             public void inputButtonClicked() throws IOException {

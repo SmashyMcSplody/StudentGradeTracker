@@ -2,7 +2,9 @@ package sgt.studentgradetracker.data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import java.util.ArrayList;
 
 public class DataManager {
@@ -13,16 +15,25 @@ public class DataManager {
     protected String fullname;
     protected String idnum;
     protected String course;
+
     protected User user;
 
     private int studentNumber;
     protected ObservableList<StudentRecord> studentRecords =  FXCollections.observableArrayList();
     public   ArrayList<StudentRecord> teacherRecords = new ArrayList<StudentRecord>();
+    protected Scene scene;
+    protected Stage stage;
+
+
+    public void initialize(ObservableList<StudentRecord> studentRecords){
+        this.studentRecords = studentRecords;
+    }
 
 
     public void addGrades(String idnumGrades, String subject, float writtenGrade, float writtenWeightage, float quizGrade, float quizWeightage, float examGrade, float examWeight){
         studentRecords.get(studentNumber).addGrade(idnumGrades, subject, writtenGrade, writtenWeightage, quizGrade, quizWeightage, examGrade, examWeight);
     }
+
     public void addStudent(StudentRecord student){
         studentRecords.add(student);
     }
@@ -52,5 +63,16 @@ public class DataManager {
             studentNumber++;
         }
         return studentChecker;
+    }
+
+    public ArrayList<User> allStudentUsers(){
+        ArrayList<User> allUsers = new ArrayList<User>();
+        for (StudentRecord record : studentRecords) {
+            ArrayList<User> users = record.getUsers();
+            if (users != null) {
+                allUsers.addAll(users);
+            }
+        }
+        return allUsers;
     }
 }

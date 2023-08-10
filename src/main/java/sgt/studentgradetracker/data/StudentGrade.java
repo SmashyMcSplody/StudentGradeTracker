@@ -36,6 +36,7 @@ public class StudentGrade extends StudentRecord{
         return quizGrade.get();
     }
 
+
     public void setQuizGrade(float grade) {
         quizGrade.set(grade);
     }
@@ -88,6 +89,7 @@ public class StudentGrade extends StudentRecord{
         this.subject.set(String.valueOf(subject));
     }
     public StringProperty idnumProperty(){ return idnum;}
+    public StringProperty fulllnameProperty(){return fullname;}
     public String getIdnum() {
         return idnum.get();
     }

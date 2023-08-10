@@ -19,9 +19,30 @@ public class Alerts{
 
     private Stage stage;
     private Scene scene;
-
     public Alerts(){
+        //null
+    }
 
+    public void changePasswordErrorAlert()throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/ChangePassAlert.fxml"));
+        Parent root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error!");
+        stage.setResizable(false);
+    }
+
+    public void invalidoldPasswordErrorAlert()throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/InvalidOldPassAlert.fxml"));
+        Parent root = loader.load();
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Error!");
+        stage.setResizable(false);
     }
     public void loginErrorAlert()throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/LoginErrorAlert.fxml"));
@@ -104,6 +125,18 @@ public class Alerts{
         stage.show();
         stage.setTitle("Error!");
         stage.setResizable(false);
+    }
+    public void successChangePassAlert()throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/SuccessChangePassAlert.fxml"));
+        Parent root = loader.load();
+
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Success!");
+        stage.setResizable(false);
+
     }
     public void successRecordAlert(String fullname)throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sgt/studentgradetracker/RecordSuccessAlert.fxml"));

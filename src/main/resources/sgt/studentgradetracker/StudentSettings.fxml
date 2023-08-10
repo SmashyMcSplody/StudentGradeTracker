@@ -59,7 +59,7 @@
             </Pane>
             <Pane prefHeight="131.0" prefWidth="300.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="13.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,7 +79,7 @@
                   </Button>
                </children></Pane>
             <Pane prefHeight="131.0" prefWidth="300.0" />
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Logout" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="72.0" prefWidth="300.0" stylesheets="@css/buttonStyle.css" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
@@ -100,7 +100,7 @@
             <Pane layoutX="20.0" prefHeight="700.0" prefWidth="700.0">
                <children>
                   <Pane layoutX="10.0" layoutY="320.0" prefHeight="380.0" prefWidth="680.0" style="-fx-border-color: #0c1d35; -fx-border-width: 5px 0px 0px 0px;" />
-                  <Button layoutX="303.0" layoutY="482.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/inputButtonStyle.css" text="Confirm" textFill="#f2eaea">
+                  <Button layoutX="303.0" layoutY="482.0" mnemonicParsing="false" onAction="#confirmButtonClicked" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/inputButtonStyle.css" text="Confirm" textFill="#f2eaea">
                      <font>
                         <Font name="Century Gothic Bold" size="15.0" />
                      </font>
