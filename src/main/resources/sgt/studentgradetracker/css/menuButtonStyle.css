@@ -1,0 +1,18 @@
+.menu-button{
+    -fx-background-color: transparent;
+}  
+
+.menu-item{
+    -fx-background-color: transparent;
+    -fx-text-fill: #0c1d35;
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-size: 12px;
+    -fx-background-radius: 15px;
+} 
+.menu-item:hover{
+    -fx-background-color: #5A708F;
+    -fx-text-fill: transparent;
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-size: 12px;
+    -fx-background-radius: 15px;
+}
