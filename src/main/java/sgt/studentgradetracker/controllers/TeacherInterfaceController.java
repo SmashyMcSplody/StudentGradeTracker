@@ -39,7 +39,7 @@ public class TeacherInterfaceController extends DataManager {
     public void setUser(User userLogin) {
         if (userLogin != null) {
             user = userLogin;
-            String fullname = user.getUserFullname();
+            String fullname = user.getFullname();
             nameLabel.setText(fullname);
         } else {
             nameLabel.setText("Null");

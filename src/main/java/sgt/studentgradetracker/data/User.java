@@ -35,9 +35,6 @@ public class User{
         return role;
     }
 
-    public String getUserFullname() {
-        return studentRecord != null ? studentRecord.getFullname() : "Null";
-    }
 
     public String getFullname() {
         return studentRecord != null ? studentRecord.getFullname() : "Null";
